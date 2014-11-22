@@ -1,0 +1,4 @@
+mysql-python
+flask
+sqlalchemy
+flask-migrate
