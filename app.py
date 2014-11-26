@@ -1,31 +1,67 @@
 from flask import Flask, url_for, render_template, flash, request, session, redirect, g
 from flask.ext.sqlalchemy import SQLAlchemy
+
+from flask.ext import admin, login
+from werkzeug.security import generate_password_hash, check_password_hash
+from wtforms import form, fields, validators
+from flask.ext.admin.contrib import sqla
+from flask.ext.admin import helpers, expose
 from sqlalchemy import and_
 import os
 import indeed
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
+app.config.debug = True
 db = SQLAlchemy(app)
 
+#custom app classes
 import models
+import eforms
+
+def init_login():
+    login_manager = login.LoginManager()
+    login_manager.init_app(app)
+
+    # Create user loader function
+    @login_manager.user_loader
+    def load_user(user_id):
+        return db.session.query(User).get(user_id)
 
 @app.route('/')
 def index():
 	return render_template('index.html') 
 
+# Initialize flask-login
+init_login()
+
+
 @app.route('/signup')
 def signup():
 	return render_template('newaccount.html')
 
-@app.route('/newuser', methods=['POST'])
-def newuser():
-	name = request.form['name']
-	email = request.form['email']
-	password = request.form['password']
-	tagline = request.form['tagline']
-	summary = request.form['summary']
-	return name
+@app.route('/home')
+def home():
+	return 'home'
+
+@app.route('/register', methods=['POST'])
+def register():
+	form = eforms.RegistrationForm(request.form)
+	if helpers.validate_form_on_submit(form):
+		user = models.User()
+		form.populate_obj(user)
+
+		user.password = generate_password_hash(form.password.data)
+
+		db.session.add(user)
+		db.session.commit()
+
+		login.login_user(user)
+		flash('logged in!')
+
+		return redirect(url_for('home'))
+	flash(form.name.data)
+	return render_template('debug.html', msg='error')
 
 @app.route('/one', methods=['GET'])
 def getStarted():
@@ -85,15 +121,6 @@ def getStarted():
 										   visitor_id=visitor.id,
 										   screen=screen)
 
-
-@app.route('/final', methods=['GET'])
-def lastScreen():
-	return 'LastScren'
-	
-
-@app.route('/explain')
-def explain():
-	return 'Explain why screen'
 
 if __name__ == '__main__':
     app.run()
