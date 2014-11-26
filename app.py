@@ -26,7 +26,7 @@ def init_login():
     # Create user loader function
     @login_manager.user_loader
     def load_user(user_id):
-        return db.session.query(User).get(user_id)
+        return db.session.query(models.User).get(user_id)
 
 @app.route('/')
 def index():
@@ -42,7 +42,9 @@ def signup():
 
 @app.route('/home')
 def home():
-	return 'home'
+	if not login.current_user.is_authenticated():
+		return redirect(url_for('index'))
+	return render_template('home.html', logged_in=login.current_user.is_authenticated())
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -62,6 +64,11 @@ def register():
 		return redirect(url_for('home'))
 	flash(form.name.data)
 	return render_template('debug.html', msg='error')
+
+@app.route('/logout')
+def logout(self):
+    login.logout_user()
+    return redirect(url_for('index'))
 
 @app.route('/one', methods=['GET'])
 def getStarted():
