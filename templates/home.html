@@ -18,7 +18,16 @@
             <div id="my-tab-content" class="tab-content">
                 <div class="tab-pane active" id="resume">
                     {% if resume %}
-                        resume exists
+                        <dl class="dl-horizontal">
+                            <dt>Experience</dt>
+                            <dd>{{ resume.experience }}</dd>
+
+                            <dt>Education</dt>
+                            <dd>{{ resume.education }}</dd>
+
+                            <dt>Skills</dt>
+                            <dd>{{ resume.skills }} </dd>
+                        </dl>
                     {% else %}
                     <form class="form-horizontal" role="form" method="post" action="{{ url_for('saveResume') }}">
                         <input type="hidden" name="user_id" value={{ user_id }}>

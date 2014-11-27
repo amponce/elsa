@@ -68,7 +68,7 @@ def home():
 	if not login.current_user.is_authenticated():
 		return redirect(url_for('index'))
 
-	resume = db.session.query(models.Resume).filter_by(user_id=login.current_user).first()
+	resume = db.session.query(models.Resume).filter_by(user_id=login.current_user.id).first()
 
 	return render_template('home.html', logged_in=login.current_user.is_authenticated()
 						   , resume=resume
