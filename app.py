@@ -29,13 +29,12 @@ def init_login():
     def load_user(user_id):
         return db.session.query(models.User).get(user_id)
 
+# Initialize flask-login
+init_login()
 
 @app.route('/')
 def index():
 	return render_template('index.html')
-
-# Initialize flask-login
-init_login()
 
 
 @app.route('/signin')
@@ -49,7 +48,7 @@ def signup():
 
 
 @app.route('/login', methods=['POST'])
-def login():
+def log_in():
 	form = eforms.LoginForm(request.form)
 	if helpers.validate_form_on_submit(form):
 		user = form.get_user()
