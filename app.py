@@ -67,7 +67,11 @@ def log_in():
 def home():
 	if not login.current_user.is_authenticated():
 		return redirect(url_for('index'))
-	return render_template('home.html', logged_in=login.current_user.is_authenticated())
+
+	resume = db.session.query(models.Resume).filter_by(user_id=login.current_user).first()
+
+	return render_template('home.html', logged_in=login.current_user.is_authenticated()
+									  , resume=resume)
 
 
 @app.route('/register', methods=['POST'])

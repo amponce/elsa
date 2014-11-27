@@ -36,6 +36,7 @@ class Resume(db.Model):
     education = db.Column(db.String(4000))
     experience = db.Column(db.String(4000))
     skills = db.Column(db.String(4000))
+    created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     def __repr__(self):
         return '<id %r>' % self.id
