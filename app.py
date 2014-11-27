@@ -81,11 +81,13 @@ def saveResume():
 	resume = models.Resume()
 	form.populate_obj(resume)
 
-	raise Exception('stopping')
-	db.session.add(resume)
-	db.session.commit()
+	if form.validate_resume(form) == True:
+		db.session.add(resume)
+		db.session.commit()
 
-	flash('resume saved')
+		flash('resume saved')
+	else:
+		flash('resume exists')
 	return redirect(url_for('home'))
 
 

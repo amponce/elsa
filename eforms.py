@@ -43,3 +43,9 @@ class Resume(form.Form):
     education = fields.TextField()
     experience = fields.TextField()
     skills = fields.TextField()
+
+    def validate_resume(self, field):
+        if db.session.query(models.Resume).filter_by(user_id=self.user_id.data).count() > 0:
+            return validators.ValidationError('Duplicate username')
+        else:
+            return True
