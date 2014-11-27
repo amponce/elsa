@@ -11,13 +11,15 @@ class LoginForm(form.Form):
         user = self.get_user()
 
         if user is None:
-            raise validators.ValidationError('Invalid user')
+            return validators.ValidationError('Invalid user')
 
         # we're comparing the plaintext pw with the the hash from the db
         if not check_password_hash(user.password, self.password.data):
         # to compare plain text passwords use
         # if user.password != self.password.data:
-            raise validators.ValidationError('Invalid password')
+            return validators.ValidationError('Invalid password')
+
+        return True
 
     def get_user(self):
         return db.session.query(models.User).filter_by(email=self.email.data).first()
