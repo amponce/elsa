@@ -25,7 +25,17 @@ class User(db.Model):
 
     # Required for administrative interface
     def __unicode__(self):
-        return self.username
+        return self.email
+
+    def __repr__(self):
+        return '<id %r>' % self.id
+
+class Resume(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer)
+    education = db.Column(db.String(4000))
+    experience = db.Column(db.String(4000))
+    skills = db.Column(db.String(4000))
 
     def __repr__(self):
         return '<id %r>' % self.id

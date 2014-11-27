@@ -32,6 +32,7 @@ def init_login():
 # Initialize flask-login
 init_login()
 
+
 @app.route('/')
 def index():
 	return render_template('index.html')
@@ -54,8 +55,9 @@ def log_in():
 		user = form.get_user()
 
 		check = form.validate_login(user)
-		raise Exception('stop')
-		return redirect(url_for('home'))
+		if check:
+			login.login_user(user)
+			return redirect(url_for('home'))
 	else:
 		flash('error logging in')
 		return redirect(url_for('index'))
@@ -74,7 +76,6 @@ def register():
 	if helpers.validate_form_on_submit(form):
 		user = models.User()
 		if form.validate_login(user):
-
 			form.populate_obj(user)
 
 			user.password = generate_password_hash(form.password.data)
@@ -106,7 +107,7 @@ def getStarted():
 	first_search = request.args.get('first_search')
 	screen = 1
 
-	#update this to write to the paging metadata table
+	# update this to write to the paging metadata table
 	paging = request.args.get('paging')
 	if not paging:
 		paging = 0

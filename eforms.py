@@ -36,3 +36,8 @@ class RegistrationForm(form.Form):
             return validators.ValidationError('Duplicate username')
         else:
             return True
+
+class Resume(form.Form):
+    education = fields.TextField()
+    experience = fields.TextField()
+    skills = fields.TextField()
