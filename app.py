@@ -15,9 +15,10 @@ app.config.from_object(os.environ['APP_SETTINGS'])
 app.config.debug = True
 db = SQLAlchemy(app)
 
-#custom app classes
+# custom app classes
 import models
 import eforms
+
 
 def init_login():
     login_manager = login.LoginManager()
@@ -28,27 +29,31 @@ def init_login():
     def load_user(user_id):
         return db.session.query(models.User).get(user_id)
 
+
 @app.route('/')
 def index():
-	return render_template('index.html') 
+	return render_template('index.html')
 
 # Initialize flask-login
 init_login()
+
 
 @app.route('/signin')
 def signin():
 	return render_template('signin.html')
 
+
 @app.route('/signup')
 def signup():
 	return render_template('newaccount.html')
+
 
 @app.route('/login', methods=['POST'])
 def login():
 	form = eforms.LoginForm(request.form)
 	if helpers.validate_form_on_submit(form):
 		user = form.get_user()
-		
+
 		check = form.validate_login(user)
 		raise Exception('stop')
 		return redirect(url_for('home'))
@@ -56,35 +61,45 @@ def login():
 		flash('error logging in')
 		return redirect(url_for('index'))
 
+
 @app.route('/home')
 def home():
 	if not login.current_user.is_authenticated():
 		return redirect(url_for('index'))
 	return render_template('home.html', logged_in=login.current_user.is_authenticated())
 
+
 @app.route('/register', methods=['POST'])
 def register():
 	form = eforms.RegistrationForm(request.form)
 	if helpers.validate_form_on_submit(form):
 		user = models.User()
-		form.populate_obj(user)
+		if form.validate_login(user):
 
-		user.password = generate_password_hash(form.password.data)
+			form.populate_obj(user)
 
-		db.session.add(user)
-		db.session.commit()
+			user.password = generate_password_hash(form.password.data)
 
-		login.login_user(user)
-		flash('logged in!')
+			db.session.add(user)
+			db.session.commit()
 
-		return redirect(url_for('home'))
+			login.login_user(user)
+			flash('logged in!')
+
+			return redirect(url_for('home'))
+	else:
+		flash('user exists.')
+		return redirect(url_for('signup'))
+
 	flash(form.name.data)
 	return render_template('debug.html', msg='error')
+
 
 @app.route('/logout')
 def logout():
     login.logout_user()
     return redirect(url_for('index'))
+
 
 @app.route('/one', methods=['GET'])
 def getStarted():
@@ -97,7 +112,7 @@ def getStarted():
 	if not paging:
 		paging = 0
 
-	data = indeed.getTree(first_search, paging*5)
+	data = indeed.getTree(first_search, paging * 5)
 	results = indeed.getResults(data)
 
 	user = models.User
@@ -115,16 +130,16 @@ def getStarted():
 		except Exception as e:
 			db.session.rollback()
 
-	first_page = page.query.filter(page.user_id==visitor.id).filter(page.screen==1).first()
+	first_page = page.query.filter(page.user_id == visitor.id).filter(page.screen == 1).first()
 	try:
 		first_page = page(user_id=visitor.id, screen=screen, page=1, created=None, modified=None)
 		db.session.add(first_page)
 		db.session.commit()
 	except Exception as e:
 		db.session.rollback()
-	
+
 	#finally, add the skill
-	first_skill = skill.query.filter(skill.user_id==visitor.id).filter(skill.skill_num==1).first()
+	first_skill = skill.query.filter(skill.user_id == visitor.id).filter(skill.skill_num == 1).first()
 	if first_skill is None:
 		try:
 			first_skill = skill(user_id=visitor.id, skill=first_search, skill_num=1, created=None)
@@ -136,13 +151,12 @@ def getStarted():
 		first_skill.skill = first_search
 		db.session.commit()
 
-
 	return render_template('joblist.html', first_search=first_search,
-										   results=results,
-										   email=email,
-										   skill_check=0,
-										   visitor_id=visitor.id,
-										   screen=screen)
+						   results=results,
+						   email=email,
+						   skill_check=0,
+						   visitor_id=visitor.id,
+						   screen=screen)
 
 
 if __name__ == '__main__':

@@ -32,5 +32,7 @@ class RegistrationForm(form.Form):
     summary = fields.TextField(validators=[validators.required()])
 
     def validate_login(self, field):
-        if db.session.query(User).filter_by(login=self.email.data).count() > 0:
-            raise validators.ValidationError('Duplicate username')
+        if db.session.query(models.User).filter_by(email=self.email.data).count() > 0:
+            return validators.ValidationError('Duplicate username')
+        else:
+            return True
