@@ -35,10 +35,26 @@ def index():
 # Initialize flask-login
 init_login()
 
+@app.route('/signin')
+def signin():
+	return render_template('signin.html')
 
 @app.route('/signup')
 def signup():
 	return render_template('newaccount.html')
+
+@app.route('/login', methods=['POST'])
+def login():
+	form = eforms.LoginForm(request.form)
+	if helpers.validate_form_on_submit(form):
+		user = form.get_user()
+		
+		check = form.validate_login(user)
+		raise Exception('stop')
+		return redirect(url_for('home'))
+	else:
+		flash('error logging in')
+		return redirect(url_for('index'))
 
 @app.route('/home')
 def home():
@@ -66,7 +82,7 @@ def register():
 	return render_template('debug.html', msg='error')
 
 @app.route('/logout')
-def logout(self):
+def logout():
     login.logout_user()
     return redirect(url_for('index'))
 

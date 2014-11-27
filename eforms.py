@@ -1,8 +1,10 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms import form, fields, validators
+from app import db
+import models
 
 class LoginForm(form.Form):
-    login = fields.TextField(validators=[validators.required()])
+    email = fields.TextField(validators=[validators.required()])
     password = fields.PasswordField(validators=[validators.required()])
 
     def validate_login(self, field):
@@ -18,15 +20,9 @@ class LoginForm(form.Form):
             raise validators.ValidationError('Invalid password')
 
     def get_user(self):
-        return db.session.query(User).filter_by(login=self.login.data).first()
+        return db.session.query(models.User).filter_by(email=self.email.data).first()
 
 class RegistrationForm(form.Form):
-	#name = request.form['name']
-	#email = request.form['email']
-	#password = request.form['password']
-	#tagline = request.form['tagline']
-	#summary = request.form['summary']
-
     name = fields.TextField(validators=[validators.required()])
     email = fields.TextField(validators=[validators.required()])
     password = fields.PasswordField(validators=[validators.required()])
@@ -34,5 +30,5 @@ class RegistrationForm(form.Form):
     summary = fields.TextField(validators=[validators.required()])
 
     def validate_login(self, field):
-        if db.session.query(User).filter_by(login=self.login.data).count() > 0:
+        if db.session.query(User).filter_by(login=self.email.data).count() > 0:
             raise validators.ValidationError('Duplicate username')
