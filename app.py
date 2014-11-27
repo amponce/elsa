@@ -71,15 +71,17 @@ def home():
 	resume = db.session.query(models.Resume).filter_by(user_id=login.current_user).first()
 
 	return render_template('home.html', logged_in=login.current_user.is_authenticated()
-						   , resume=resume)
+						   , resume=resume
+						   , user_id=login.current_user.id)
 
 
-@app.route('/saveResume')
+@app.route('/saveResume', methods=['POST'])
 def saveResume():
 	form = eforms.Resume(request.form)
 	resume = models.Resume()
 	form.populate_obj(resume)
 
+	raise Exception('stopping')
 	db.session.add(resume)
 	db.session.commit()
 

@@ -1,5 +1,6 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms import form, fields, validators
+from flask.ext import admin, login
 from app import db
 import models
 
@@ -38,6 +39,7 @@ class RegistrationForm(form.Form):
             return True
 
 class Resume(form.Form):
+    user_id = fields.IntegerField()
     education = fields.TextField()
     experience = fields.TextField()
     skills = fields.TextField()
