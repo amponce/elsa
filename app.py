@@ -69,9 +69,11 @@ def home():
 		return redirect(url_for('index'))
 
 	resume = db.session.query(models.Resume).filter_by(user_id=login.current_user.id).first()
+	tests = db.session.query(models.ABTests).filter_by(user_id=login.current_user.id)
 
 	return render_template('home.html', logged_in=login.current_user.is_authenticated()
 						   , resume=resume
+						   , tests=tests
 						   , user_id=login.current_user.id)
 
 

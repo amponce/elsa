@@ -49,3 +49,15 @@ class Resume(form.Form):
             return validators.ValidationError('Duplicate username')
         else:
             return True
+
+class testForm(form.Form):
+    user_id = fields.IntegerField()
+    test_name = fields.TextField()
+    hypothesis = fields.TextField()
+    start_date = fields.DateField()
+    end_date = fields.DateField()
+
+class recipeForm(form.Form):
+    test_id = fields.IntegerField()
+    recipe = fields.StringField()
+    version = fields.StringField()
