@@ -77,6 +77,10 @@ def home():
 						   , user_id=login.current_user.id)
 
 
+@app.route('/viewTest/<int:test_id>')
+def viewTest(test_id):
+	return 'test_id: %s' % test_id
+
 @app.route('/addTest', methods=['POST'])
 def addTest():
 	if not login.current_user.is_authenticated():

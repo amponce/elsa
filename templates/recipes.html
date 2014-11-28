@@ -15,11 +15,11 @@
                     <div class="col-sm-5 col-sm-offset-1">
                         <div class="form-group">
                             <label>Recipe</label>
-                            <input type="text" name="recipe" class="form-control" required="required" placeholder="Control" disabled>
+                            <input type="text" name="recipe[0]" class="form-control" required="required" value="Control" readonly>
                         </div>
                         <div class="form-group">
                             <label>Version</label>
-                            <textarea type="text" name="version" class="form-control" required="required" disabled>
+                            <textarea type="text" name="version[0]" class="form-control" required="required" readonly>
                                 <dl class="dl-horizontal">
                                     <dt>Experience</dt>
                                     <dd>{{ resume.experience }}</dd>
@@ -36,11 +36,11 @@
                     <div class="col-sm-5">
                         <div class="form-group">
                             <label>Recipe</label>
-                            <input type="text" name="recipe" class="form-control" required="required" placeholder="Recipe B">
+                            <input type="text" name="recipe[1]" class="form-control" required="required" placeholder="Recipe B">
                         </div>
                         <div class="form-group">
                             <label>Version</label>
-                            <textarea type="text" name="version" class="form-control" required="required">
+                            <textarea type="text" name="version[1]" class="form-control" required="required">
                                 <dl class="dl-horizontal">
                                     <dt>Experience</dt>
                                     <dd>{{ resume.experience }}</dd>
