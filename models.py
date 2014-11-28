@@ -40,3 +40,24 @@ class Resume(db.Model):
 
     def __repr__(self):
         return '<id %r>' % self.id
+
+class ABTests(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer)
+    test_name = db.Column(db.String(4000))
+    hypothesis = db.Column(db.String(4000))
+    created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    start_date = db.Column(db.DateTime)
+    end_date = db.Column(db.DateTime)
+
+    def __repr__(self):
+        return '<id %r>' % self.id
+
+class Recipes(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    test_id = db.Column(db.Integer)
+    recipe = db.Column(db.String(255))
+    version = db.Column(db.String(4000))
+
+    def __repr__(self):
+        return '<id %r>' % self.id
