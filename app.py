@@ -83,8 +83,18 @@ def addTest():
 		return redirect(url_for('index'))
 
 	form = eforms.testForm(request.form)
+	tests = models.ABTests()
+	form.populate_obj(tests)
 
-	return 'addtest'
+	try:
+		db.session.add(tests)
+		db.session.commit()
+		flash('test saved')
+		return render_template('recipes.html', test_id=tests.id
+											 , user_id=login.current_user.id)
+	except Exception as e:
+		flash('error: ', e)
+		return redirect(url_for('home'))
 
 
 @app.route('/saveResume', methods=['POST'])

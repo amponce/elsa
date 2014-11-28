@@ -63,7 +63,7 @@
                 </div>
                 <div class="tab-pane" id="live">
                     {% if tests %}
-                        <form class="form-horizontal" role="form" method="post" action="#">
+                        <form class="form-horizontal" role="form" method="post" action="{{ url_for('addTest') }}">
                             <input type="hidden" name="user_id" value={{ user_id }}>
                           <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Test Name</label>

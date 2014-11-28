@@ -8,7 +8,9 @@
                 <h2>Set up Recipes</h2>
             </div>
             <div class="row contact-wrap">
-                <form id="existing-user-form" class="contact-form" name="sign-in-form" method="post" action="{{ url_for('log_in') }}">
+                <form id="existing-user-form" class="contact-form" name="sign-in-form" method="post" action="#">
+                    <input type="hidden" name="user_id" value={{ user_id }}>
+                    <input type="hidden" name="test_id" value={{ test_id }}>
                     <div class="col-sm-5 col-sm-offset-1">
                         <div class="form-group">
                             <label>Email *</label>
