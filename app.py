@@ -77,8 +77,21 @@ def home():
 						   , user_id=login.current_user.id)
 
 
+@app.route('/addTest', methods=['POST'])
+def addTest():
+	if not login.current_user.is_authenticated():
+		return redirect(url_for('index'))
+
+	form = eforms.testForm(request.form)
+
+	return 'addtest'
+
+
 @app.route('/saveResume', methods=['POST'])
 def saveResume():
+	if not login.current_user.is_authenticated():
+		return redirect(url_for('index'))
+
 	form = eforms.Resume(request.form)
 	resume = models.Resume()
 	form.populate_obj(resume)
