@@ -116,7 +116,7 @@ def addRecipe():
 
 	except Exception as e:
 		flash('error: ', e)
-		return redirect(url_for('index'))
+		return redirect(url_for('home'))
 
 @app.route('/saveResume', methods=['POST'])
 def saveResume():

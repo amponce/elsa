@@ -62,7 +62,7 @@
                     {% endif %}
                 </div>
                 <div class="tab-pane" id="live">
-                    {% if tests %}
+                    {% if tests.count == 0 %}
                         <form class="form-horizontal" role="form" method="post" action="{{ url_for('addTest') }}">
                             <input type="hidden" name="user_id" value={{ user_id }}>
                           <div class="form-group">
@@ -98,7 +98,14 @@
                           </div>
                         </form>
                     {% else %}
-                        table of tests
+                        <table class="table">
+                        {% for test in tests %}
+                            <td><tr>
+
+                            </tr></td>
+                        {% else %}
+                        {% endfor %}
+                            </table>
                     {% endif %}
                 </div>
                 <div class="tab-pane" id="completed">
