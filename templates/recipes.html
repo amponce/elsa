@@ -8,20 +8,53 @@
                 <h2>Set up Recipes</h2>
             </div>
             <div class="row contact-wrap">
-                <form id="existing-user-form" class="contact-form" name="sign-in-form" method="post" action="#">
+                <form id="existing-user-form" class="contact-form" name="sign-in-form" method="post" action="{{ url_for('addRecipe') }}">
                     <input type="hidden" name="user_id" value={{ user_id }}>
                     <input type="hidden" name="test_id" value={{ test_id }}>
+
                     <div class="col-sm-5 col-sm-offset-1">
                         <div class="form-group">
-                            <label>Email *</label>
-                            <input type="email" name="email" class="form-control" required="required">
+                            <label>Recipe</label>
+                            <input type="text" name="recipe" class="form-control" required="required" placeholder="Control" disabled>
                         </div>
                         <div class="form-group">
-                            <label>Password *</label>
-                            <input type="password" name="password" class="form-control" required="required">
+                            <label>Version</label>
+                            <textarea type="text" name="version" class="form-control" required="required" disabled>
+                                <dl class="dl-horizontal">
+                                    <dt>Experience</dt>
+                                    <dd>{{ resume.experience }}</dd>
+
+                                    <dt>Education</dt>
+                                    <dd>{{ resume.education }}</dd>
+
+                                    <dt>Skills</dt>
+                                    <dd>{{ resume.skills }} </dd>
+                                </dl>
+                                </textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label>Recipe</label>
+                            <input type="text" name="recipe" class="form-control" required="required" placeholder="Recipe B">
                         </div>
                         <div class="form-group">
-                            <button type="submit" name="submit" class="btn btn-primary btn-lg" required="required">Sign In</button>
+                            <label>Version</label>
+                            <textarea type="text" name="version" class="form-control" required="required">
+                                <dl class="dl-horizontal">
+                                    <dt>Experience</dt>
+                                    <dd>{{ resume.experience }}</dd>
+
+                                    <dt>Education</dt>
+                                    <dd>{{ resume.education }}</dd>
+
+                                    <dt>Skills</dt>
+                                    <dd>{{ resume.skills }} </dd>
+                                </dl>
+                                </textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" name="submit" class="btn btn-primary btn-lg" required="required">Launch Test!</button>
                         </div>
                     </div>
                 </form>

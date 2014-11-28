@@ -86,16 +86,37 @@ def addTest():
 	tests = models.ABTests()
 	form.populate_obj(tests)
 
+	resume = db.session.query(models.Resume).filter_by(user_id=login.current_user.id).first()
+
 	try:
 		db.session.add(tests)
 		db.session.commit()
 		flash('test saved')
 		return render_template('recipes.html', test_id=tests.id
-											 , user_id=login.current_user.id)
+											 , user_id=login.current_user.id
+											 , resume=resume)
 	except Exception as e:
 		flash('error: ', e)
 		return redirect(url_for('home'))
 
+@app.route('/addRecipe', methods=['POST'])
+def addRecipe():
+	if not login.current_user.is_authenticated():
+		return redirect(url_for('index'))
+
+	form = eforms.recipeForm(request.form)
+	recipes = models.Recipes()
+	form.populate_obj(recipes)
+
+	try:
+		db.session.add(recipes)
+		db.session.commit()
+		flash('recipes saved!')
+		return render_template(url_for('home'))
+
+	except Exception as e:
+		flash('error: ', e)
+		return redirect(url_for('index'))
 
 @app.route('/saveResume', methods=['POST'])
 def saveResume():
