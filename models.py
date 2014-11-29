@@ -82,3 +82,16 @@ class Roles(db.Model):
 
     def __repr__(self):
         return '<id %r>' % self.id
+
+class Jobs(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255))
+    description = db.Column(db.String(4000))
+    skills = db.Column(db.String(4000))
+    poster_id = db.Column(db.Integer)
+    created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    expires = db.Column(db.DateTime)
+    url = db.Column(db.String(4000))
+
+    def __repr__(self):
+        return '<id %r>' % self.id

@@ -156,7 +156,10 @@ def addRecipe():
 #--------------------------------------------------------------------
 @app.route('/newJob')
 def newJob():
-	return render_template('job_posting.html')
+	if not login.current_user.is_authenticated():
+		return redirect(url_for('index'))
+
+	return render_template('job_posting.html', user_id=login.current_user.id)
 
 #--------------------------------------------------------------------
 #

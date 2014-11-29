@@ -61,3 +61,10 @@ class recipeForm(form.Form):
     test_id = fields.IntegerField()
     recipe = fields.FieldList(fields.StringField())
     version = fields.FieldList(fields.StringField())
+
+class jobsForm(form.Form):
+    poster_id = fields.IntegerField()
+    title = fields.StringField()
+    description = fields.StringField()
+    skills = fields.StringField()
+    url = fields.StringField()
