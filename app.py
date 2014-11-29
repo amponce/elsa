@@ -82,7 +82,12 @@ def viewTest(test_id):
 	if not login.current_user.is_authenticated():
 		return redirect(url_for('index'))
 
-	return render_template('view_test.html', test_id=test_id)
+	recipes = db.session.query(models.Recipes).filter_by(test_id=test_id)
+	test_details = db.session.query(models.ABTests).filter_by(id=test_id).first()
+
+	return render_template('view_test.html', test_id=test_id
+										   , recipes=recipes
+										   , test_details=test_details)
 
 @app.route('/addTest', methods=['POST'])
 def addTest():

@@ -9,6 +9,7 @@ class User(db.Model):
     created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     tagline = db.Column(db.String(255))
     summary = db.Column(db.String(4000))
+    role_id = db.Column(db.Integer, default=0)
 
     # Flask-Login integration
     def is_authenticated(self):
@@ -58,6 +59,26 @@ class Recipes(db.Model):
     test_id = db.Column(db.Integer)
     recipe = db.Column(db.String(255))
     version = db.Column(db.String(4000))
+
+    def __repr__(self):
+        return '<id %r>' % self.id
+
+class RecipeStats(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    recipe_id = db.Column(db.Integer)
+    views = db.Column(db.Integer)
+    adds = db.Column(db.Integer)
+    latest_activity = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+
+    def __repr__(self):
+        return '<id %r>' % self.id
+
+class Roles(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    role = db.Column(db.String(255))
+    company_id = db.Column(db.Integer)
+    created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    is_recruiter = db.Column(db.Integer)
 
     def __repr__(self):
         return '<id %r>' % self.id
