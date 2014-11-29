@@ -71,14 +71,17 @@
                 <div class="collapse navbar-collapse navbar-right">
                     <ul class="nav navbar-nav">
                         <li><a href="{{ url_for('home') }}">Home</a></li>
-                        {% if role.is_recruiter == 1 %}
-                            <li><a href="#">Post a Job</a></li>
-                            <li><a href="#">Find Candidates</a></li>
-                        {% else %}
-                        {% endif %}
+                        {% if role %}
+                            {% if role.is_recruiter == 1 %}
+                                <li><a href="#">Post a Job</a></li>
+                                <li><a href="#">Find Candidates</a></li>
+                            {% else %}
+                            {% endif %}
 
-                        {% if logged_in %}
-                            <li><a href="{{ url_for('logout')}}">Logout</a></li>
+                            {% if logged_in %}
+                                <li><a href="{{ url_for('logout')}}">Logout</a></li>
+                            {% else %}
+                            {% endif %}
                         {% else %}
                         {% endif %}
                         <li class="dropdown">

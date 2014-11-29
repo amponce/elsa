@@ -79,6 +79,11 @@ def home():
 						   , role=role)
 
 
+# --------------------------------------------------------------------
+#
+# Begin Testing Block
+#
+#--------------------------------------------------------------------
 @app.route('/viewTest/<int:test_id>')
 def viewTest(test_id):
 	if not login.current_user.is_authenticated():
@@ -88,8 +93,9 @@ def viewTest(test_id):
 	test_details = db.session.query(models.ABTests).filter_by(id=test_id).first()
 
 	return render_template('view_test.html', test_id=test_id
-										   , recipes=recipes
-										   , test_details=test_details)
+						   , recipes=recipes
+						   , test_details=test_details)
+
 
 @app.route('/addTest', methods=['POST'])
 def addTest():
@@ -107,11 +113,12 @@ def addTest():
 		db.session.commit()
 		flash('test saved')
 		return render_template('recipes.html', test_id=tests.id
-											 , user_id=login.current_user.id
-											 , resume=resume)
+							   , user_id=login.current_user.id
+							   , resume=resume)
 	except Exception as e:
 		flash('error: ', e)
 		return redirect(url_for('home'))
+
 
 @app.route('/addRecipe', methods=['POST'])
 def addRecipe():
@@ -134,6 +141,28 @@ def addRecipe():
 	except Exception as e:
 		flash('error: %s' % e)
 		return redirect(url_for('home'))
+
+
+#--------------------------------------------------------------------
+#
+#						End Testing Block
+#
+#--------------------------------------------------------------------
+
+#--------------------------------------------------------------------
+#
+#						Begin Job Posting Block
+#
+#--------------------------------------------------------------------
+@app.route('/newJob')
+def newJob():
+	return render_template('job_posting.html')
+
+#--------------------------------------------------------------------
+#
+#						End Job Posting Block
+#
+#--------------------------------------------------------------------
 
 @app.route('/saveResume', methods=['POST'])
 def saveResume():
