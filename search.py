@@ -1,6 +1,10 @@
 from whoosh.index import create_in, exists_in, open_dir
 from whoosh.fields import *
 import os
+import MySQLdb as m
+
+db_settings = os.environ['DATABASE_URL']
+#need to write refresh def for index 
 
 candidates = Schema(user_id=ID(stored=True), tagline=TEXT(stored=True), summary=TEXT(stored=True), experience=TEXT(stored=True), skills=TEXT(stored=True))
 jobs = Schema(job_id=ID(stored=True), title=TEXT(stored=True), skills=TEXT(stored=True), description=TEXT(stored=True))
@@ -21,10 +25,14 @@ if not exists_in('candidates_index', 'candidates'):
 else:
     candidate_ix = open_dir('candidates_index', candidates)
 
-c_writer = candidate_ix.writer()
-j_writer = jobs_ix.writer()
 
-c_writer.commit()
+
+#c_writer = candidate_ix.writer()
+#j_writer = jobs_ix.writer()
+
+#c_writer.commit()
+
+
 #j_writer.commit()
 #j_writer.add_document(job_id=u"1", title=u"Sr. Job Maker", skills=u"Money, SQL, jobs, programming", description=u"foo foo in the poo poo")
 
