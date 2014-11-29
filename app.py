@@ -72,11 +72,14 @@ def home():
 	tests = db.session.query(models.ABTests).filter_by(user_id=login.current_user.id)
 	role = db.session.query(models.Roles).filter_by(id=login.current_user.role_id).first()
 
+	postings = db.session.query(models.Jobs).filter_by(poster_id=login.current_user.id)
+
 	return render_template('home.html', logged_in=login.current_user.is_authenticated()
 						   , resume=resume
 						   , tests=tests
 						   , user_id=login.current_user.id
-						   , role=role)
+						   , role=role
+						   , postings=postings)
 
 
 # --------------------------------------------------------------------
@@ -160,6 +163,24 @@ def newJob():
 		return redirect(url_for('index'))
 
 	return render_template('job_posting.html', user_id=login.current_user.id)
+
+@app.route('/addJob', methods=['POST'])
+def addJob():
+	if not login.current_user.is_authenticated():
+		return redirect(url_for('index'))
+
+	form = eforms.jobsForm(request.form)
+	job = models.Jobs()
+	form.populate_obj(job)
+
+	try:
+		db.session.add(job)
+		db.session.commit()
+		flash('Successfully added job!')
+		return redirect(url_for('home'))
+	except Exception as e:
+		flash('Error posting job: %s' % e)
+		return redirect(url_for('home'))
 
 #--------------------------------------------------------------------
 #
