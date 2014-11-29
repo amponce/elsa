@@ -59,5 +59,5 @@ class testForm(form.Form):
 
 class recipeForm(form.Form):
     test_id = fields.IntegerField()
-    recipe = fields.StringField()
-    version = fields.StringField()
+    recipe = fields.FieldList(fields.StringField())
+    version = fields.FieldList(fields.StringField())

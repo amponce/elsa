@@ -108,18 +108,21 @@ def addRecipe():
 	if not login.current_user.is_authenticated():
 		return redirect(url_for('index'))
 
-	form = eforms.recipeForm(request.form)
-	recipes = models.Recipes()
-	form.populate_obj(recipes)
+	test_id = request.form['test_id']
+	recipes = request.form.getlist('recipe')
+	versions = request.form.getlist('version')
 
 	try:
-		db.session.add(recipes)
-		db.session.commit()
-		flash('recipes saved!')
+		for i, value in enumerate(recipes):
+			recipe = models.Recipes(test_id=test_id, recipe=value, version=versions[i])
+			db.session.add(recipe)
+			db.session.commit()
+
+		flash('Successfully added recipes!')
 		return render_template(url_for('home'))
 
 	except Exception as e:
-		flash('error: ', e)
+		flash('error: %s' % e)
 		return redirect(url_for('home'))
 
 @app.route('/saveResume', methods=['POST'])
