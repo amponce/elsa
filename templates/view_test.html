@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <section id="contact-page">
+        <div class="container">
+            <div class="center">
+                <h2>Test ID: {{ test_id }}</h2>
+            </div>
+            <div class="row contact-wrap">
+                <form id="existing-user-form" class="contact-form" name="sign-in-form" method="post" action="{{ url_for('log_in') }}">
+                    <div class="col-sm-5 col-sm-offset-1">
+                        <div eclass="form-group">
+                            <label>Email *</label>
+                            <input type="email" name="email" class="form-control" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label>Password *</label>
+                            <input type="password" name="password" class="form-control" required="required">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" name="submit" class="btn btn-primary btn-lg" required="required">Sign In</button>
+                        </div>
+                    </div>
+                </form>
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </section><!--/#contact-page-->
+
+{% endblock %}

@@ -79,7 +79,10 @@ def home():
 
 @app.route('/viewTest/<int:test_id>')
 def viewTest(test_id):
-	return 'test_id: %s' % test_id
+	if not login.current_user.is_authenticated():
+		return redirect(url_for('index'))
+
+	return render_template('view_test.html', test_id=test_id)
 
 @app.route('/addTest', methods=['POST'])
 def addTest():
