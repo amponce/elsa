@@ -70,11 +70,13 @@ def home():
 
 	resume = db.session.query(models.Resume).filter_by(user_id=login.current_user.id).first()
 	tests = db.session.query(models.ABTests).filter_by(user_id=login.current_user.id)
+	role = db.session.query(models.Roles).filter_by(id=login.current_user.role_id).first()
 
 	return render_template('home.html', logged_in=login.current_user.is_authenticated()
 						   , resume=resume
 						   , tests=tests
-						   , user_id=login.current_user.id)
+						   , user_id=login.current_user.id
+						   , role=role)
 
 
 @app.route('/viewTest/<int:test_id>')
