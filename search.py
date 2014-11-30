@@ -1,10 +1,8 @@
 from whoosh.index import create_in, exists_in, open_dir
 from whoosh.fields import *
 import os
-import MySQLdb as m
-
-db_settings = os.environ['DATABASE_URL']
-#need to write refresh def for index 
+from app import db
+import models
 
 candidates = Schema(user_id=ID(stored=True), tagline=TEXT(stored=True), summary=TEXT(stored=True), experience=TEXT(stored=True), skills=TEXT(stored=True))
 jobs = Schema(job_id=ID(stored=True), title=TEXT(stored=True), skills=TEXT(stored=True), description=TEXT(stored=True))
@@ -25,7 +23,16 @@ if not exists_in('candidates_index', 'candidates'):
 else:
     candidate_ix = open_dir('candidates_index', candidates)
 
-
+#need to write refresh def for index
+def reIndexCandidates():
+    candidates_ix = create_in('candidates_index', candidates)
+    candidate_data = db.session.query(models.User, models.Resume).join(models.Resume).all()
+    writer = candidates_ix.writer()
+    #Schema(user_id=ID(stored=True), tagline=TEXT(stored=True), summary=TEXT(stored=True), experience=TEXT(stored=True), skills=TEXT(stored=True))
+    #data is in tuples
+    for candidate in candidate_data:
+        writer.add_document()
+    return True
 
 #c_writer = candidate_ix.writer()
 #j_writer = jobs_ix.writer()
