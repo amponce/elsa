@@ -38,6 +38,15 @@ def reIndexCandidates():
     writer.commit()
     return True
 
+def addCandidate(user_id, tagline, summary, experience, skills):
+    writer = candidate_ix.writer()
+    try:
+        writer.add_document(user_id=unicode(str(user_id)), tagline=tagline, summary=summary, experience=experience, skills=skills)
+        writer.commit()
+        return True
+    except:
+        return False
+
 #c_writer = candidate_ix.writer()
 #j_writer = jobs_ix.writer()
 
