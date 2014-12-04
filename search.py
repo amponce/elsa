@@ -1,5 +1,6 @@
 from whoosh.index import create_in, exists_in, open_dir
 from whoosh.fields import *
+from whoosh.qparser import MultifieldParser
 import os
 from app import db
 import models
@@ -28,7 +29,7 @@ def reIndexCandidates():
     candidates_ix = create_in('candidates_index', candidates)
     candidate_data = db.session.query(models.User, models.Resume).join(models.Resume).all()
     writer = candidates_ix.writer()
-    #Schema(user_id=ID(stored=True), tagline=TEXT(stored=True), summary=TEXT(stored=True), experience=TEXT(stored=True), skills=TEXT(stored=True))
+
     #data is in tuples
     for candidate in candidate_data:
         writer.add_document(user_id=unicode(str(candidate[0].id), "utf-8"), tagline=candidate[0].tagline, summary=candidate[0].summary, experience=candidate[1].experience, skills=candidate[1].skills)
@@ -50,6 +51,12 @@ def reIndexCandidates():
 #    results = searcher.search(query)
 #    results[0]
 
+#Schema(user_id=ID(stored=True), tagline=TEXT(stored=True), summary=TEXT(stored=True), experience=TEXT(stored=True), skills=TEXT(stored=True))
+def candidateSearch(term):
+    searcher = candidate_ix.searcher()
+    query = MultifieldParser(["user_id", "tagline", "summary", "experience", "skills"], schema=candidate_ix.schema).parse(term)
+    results = searcher.search(query)
+    return results
 #with s.jobs_ix.searcher() as searcher:
 #    query = QueryParser("job_id", s.jobs_ix.schema).parse("1")
 #    results = searcher.search(query)
