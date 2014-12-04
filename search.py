@@ -31,7 +31,8 @@ def reIndexCandidates():
     #Schema(user_id=ID(stored=True), tagline=TEXT(stored=True), summary=TEXT(stored=True), experience=TEXT(stored=True), skills=TEXT(stored=True))
     #data is in tuples
     for candidate in candidate_data:
-        writer.add_document()
+        writer.add_document(user_id=unicode(str(candidate[0].id), "utf-8"), tagline=candidate[0].tagline, summary=candidate[0].summary, experience=candidate[1].experience, skills=candidate[1].skills)
+    writer.commit()
     return True
 
 #c_writer = candidate_ix.writer()
