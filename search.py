@@ -14,10 +14,11 @@ if not os.path.exists('jobs_index'):
 if not os.path.exists('candidates_index'):
     os.makedirs('candidates_index')
 
-if not exists_in('jobs_index', 'jobs'):
+try:
+    jobs_ix = open_dir('jobs_index')
+except:
+    print "re-creating jobs index"
     jobs_ix = create_in('jobs_index', jobs)
-else:
-    jobs_ix = open_dir('jobs_index', jobs)
 
 try:
     candidate_ix = open_dir('candidates_index')
