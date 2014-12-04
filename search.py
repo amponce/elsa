@@ -19,10 +19,11 @@ if not exists_in('jobs_index', 'jobs'):
 else:
     jobs_ix = open_dir('jobs_index', jobs)
 
-if not exists_in('candidates_index', 'candidates'):
+try:
+    candidate_ix = open_dir('candidates_index')
+except:
+    print "re-creating candidate index"
     candidate_ix = create_in('candidates_index', candidates)
-else:
-    candidate_ix = open_dir('candidates_index', candidates)
 
 #need to write refresh def for index
 def reIndexCandidates():
