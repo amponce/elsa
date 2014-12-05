@@ -38,10 +38,11 @@ def reIndexCandidates():
     writer.commit()
     return True
 
-def addCandidate(user_id, tagline, summary, experience, skills):
+def addCandidate(user_id):
     writer = candidate_ix.writer()
+    candidate = db.session.query(models.User, models.Resume).join(models.Resume).filter_by(user_id=user_id).first()
     try:
-        writer.add_document(user_id=unicode(str(user_id)), tagline=tagline, summary=summary, experience=experience, skills=skills)
+        writer.add_document(user_id=unicode(str(candidate[0].id), "utf-8"), tagline=candidate[0].tagline, summary=candidate[0].summary, experience=candidate[1].experience, skills=candidate[1].skills)
         writer.commit()
         return True
     except:

@@ -8,7 +8,7 @@ from flask.ext.admin.contrib import sqla
 from flask.ext.admin import helpers, expose
 from sqlalchemy import and_
 import os
-import indeed
+import search
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
@@ -200,7 +200,7 @@ def saveResume():
 	if form.validate_resume(form) == True:
 		db.session.add(resume)
 		db.session.commit()
-
+		search.addCandidate(resume.user_id)
 		flash('resume saved')
 	else:
 		flash('resume exists')
