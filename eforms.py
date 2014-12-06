@@ -68,3 +68,9 @@ class jobsForm(form.Form):
     description = fields.StringField()
     skills = fields.StringField()
     url = fields.StringField()
+
+class Pipeline(form.Form):
+    job_id = fields.IntegerField()
+    applicant = fields.IntegerField()
+    resume = fields.IntegerField()
+    status = fields.StringField()

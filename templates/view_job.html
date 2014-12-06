@@ -33,9 +33,9 @@
                               <form class="form-horizontal" role="form" method="post" action="#">
 
                           <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Resume Test</label>
+                            <label class="col-sm-2 control-label">Resume Test</label>
                             <div class="col-sm-10">
-                                <select name="recipe" class="form-control">
+                                <select name="resume" class="form-control">
                                   <option value="0" selected>Standard Resume</option>
                               {% for test in tests %}
                                     <option value="{{ test.id }}">{{ test.test_name }}</option>
@@ -50,6 +50,8 @@
                             </div>
                           </div>
                                   <input type="hidden" name="job_id" value="{{ details.id }}">
+                                  <input type="hidden" name="applicant" value="{{ applicant }}">
+                                  <input type="hidden" name="status" value="applied">
                               </form>
                           </div>
                         </div>
