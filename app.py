@@ -206,7 +206,10 @@ def jobSearch():
 
 @app.route('/viewJob/<int:job_id>')
 def viewJob(job_id):
-	return render_template('view_job.html')
+	if not login.current_user.is_authenticated():
+		return redirect(url_for('index'))
+	job_details = db.session.query(models.Jobs).filter_by(id=job_id).first()
+	return render_template('view_job.html', details=job_details)
 #--------------------------------------------------------------------
 #
 #						End Search Block
