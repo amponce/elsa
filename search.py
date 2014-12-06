@@ -26,17 +26,32 @@ except:
     print "re-creating candidate index"
     candidate_ix = create_in('candidates_index', candidates)
 
-#need to write refresh def for index
-def reIndexCandidates():
-    candidates_ix = create_in('candidates_index', candidates)
-    candidate_data = db.session.query(models.User, models.Resume).join(models.Resume).all()
-    writer = candidates_ix.writer()
+def reIndexJobs():
+    try:
+        jobs_ix = create_in('jobs_index', jobs)
+        jobs_data = db.session.query(models.Jobs).all()
+        writer = jobs_ix.writer()
+        for job in jobs_data:
+            writer.add_document(job_id=unicode(str(job.id)), title=job.title, skills=job.skills, description=job.description)
 
-    #data is in tuples
-    for candidate in candidate_data:
-        writer.add_document(user_id=unicode(str(candidate[0].id), "utf-8"), tagline=candidate[0].tagline, summary=candidate[0].summary, experience=candidate[1].experience, skills=candidate[1].skills)
-    writer.commit()
-    return True
+        writer.commit()
+        return True
+    except:
+        return False
+
+def reIndexCandidates():
+    try:
+        candidates_ix = create_in('candidates_index', candidates)
+        candidate_data = db.session.query(models.User, models.Resume).join(models.Resume).all()
+        writer = candidates_ix.writer()
+
+        #data is in tuples
+        for candidate in candidate_data:
+            writer.add_document(user_id=unicode(str(candidate[0].id), "utf-8"), tagline=candidate[0].tagline, summary=candidate[0].summary, experience=candidate[1].experience, skills=candidate[1].skills)
+        writer.commit()
+        return True
+    except:
+        return False
 
 def addCandidate(user_id):
     writer = candidate_ix.writer()
@@ -45,7 +60,8 @@ def addCandidate(user_id):
         writer.add_document(user_id=unicode(str(candidate[0].id), "utf-8"), tagline=candidate[0].tagline, summary=candidate[0].summary, experience=candidate[1].experience, skills=candidate[1].skills)
         writer.commit()
         return True
-    except:
+    except Exception as e:
+        print "Error adding candidate: ", e
         return False
 
 #c_writer = candidate_ix.writer()

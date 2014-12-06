@@ -78,10 +78,11 @@
                             {% else %}
                             {% endif %}
 
-                            {% if logged_in %}
-                                <li><a href="{{ url_for('logout')}}">Logout</a></li>
-                            {% else %}
-                            {% endif %}
+                        {% else %}
+                        {% endif %}
+
+                        {% if logged_in %}
+                            <li><a href="{{ url_for('logout')}}">Logout</a></li>
                         {% else %}
                         {% endif %}
                         <li class="dropdown">
