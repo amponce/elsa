@@ -8,7 +8,6 @@ from flask.ext.admin.contrib import sqla
 from flask.ext.admin import helpers, expose
 from sqlalchemy import and_
 import os
-import search
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
@@ -17,6 +16,7 @@ db = SQLAlchemy(app)
 
 # custom app classes
 import models
+import search
 import eforms
 
 

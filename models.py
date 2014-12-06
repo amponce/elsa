@@ -95,3 +95,14 @@ class Jobs(db.Model):
 
     def __repr__(self):
         return '<id %r>' % self.id
+
+class Pipeline(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    job_id = db.Column(db.Integer, db.ForeignKey('jobs.id'))
+    applicant = db.Column(db.Integer, db.ForeignKey('user.id'))
+    resume = db.Column(db.Integer, db.ForeignKey('ab_tests.id'))
+    created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    status = db.Column(db.String(255))
+
+    def __repr__(self):
+        return '<id %r>' % self.id
