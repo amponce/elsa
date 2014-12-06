@@ -8,6 +8,13 @@
                 <h2>Search Results for {{ job_q }}</h2>
             </div>
 
+            {% for result in results %}
+                <p class="lead">{{ result['title'] }}</p>
+                <p>{{ result['description'] }}</p>
+            {% else %}
+                <p class="lead">No results found...</p>
+            {% endfor %}
+
         </div><!--/.container-->
     </section><!--/#contact-page-->
 
