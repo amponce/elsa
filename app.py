@@ -176,6 +176,7 @@ def addJob():
 	try:
 		db.session.add(job)
 		db.session.commit()
+		search.addJob(job.id)
 		flash('Successfully added job!')
 		return redirect(url_for('home'))
 	except Exception as e:

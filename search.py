@@ -39,6 +39,17 @@ def reIndexJobs():
     except:
         return False
 
+def addJob(job_id):
+    writer = jobs_ix.writer()
+    job = db.session.query(models.Jobs).filter_by(id=job_id).first()
+    try:
+        writer.add_document(job_id=unicode(str(job.id)), title=job.title, skills=job.skills, description=job.description)
+        writer.commit()
+        return True
+    except Exception as e:
+        print "Error adding job: ", e
+        return False
+
 def reIndexCandidates():
     try:
         candidates_ix = create_in('candidates_index', candidates)
