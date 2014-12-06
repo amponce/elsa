@@ -9,8 +9,8 @@
             </div>
 
             {% for result in results %}
-                <p class="lead">{{ result['title'] }}</p>
-                <p>{{ result['description'] }}</p>
+                <p class="lead"><a href="{{ url_for('viewJob', job_id=result.job_id) }}">{{ result['title'] }}</a></p>
+                <p>{{ result['description'] }}</p><br/>
             {% else %}
                 <p class="lead">No results found...</p>
             {% endfor %}

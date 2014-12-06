@@ -196,10 +196,17 @@ def addJob():
 #--------------------------------------------------------------------
 @app.route('/jobSearch', methods=['GET'])
 def jobSearch():
+	if not login.current_user.is_authenticated():
+		return redirect(url_for('index'))
+
 	query = request.args.get('job_q','')
 	results = search.jobSearch(query)
 	return render_template('search.html', job_q=query
 										, results=results)
+
+@app.route('/viewJob/<int:job_id>')
+def viewJob(job_id):
+	return render_template('view_job.html')
 #--------------------------------------------------------------------
 #
 #						End Search Block
