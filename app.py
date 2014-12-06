@@ -212,6 +212,12 @@ def viewJob(job_id):
 	tests = db.session.query(models.ABTests).filter_by(user_id=login.current_user.id).all()
 	return render_template('view_job.html', details=job_details
 										  , tests=tests)
+
+@app.route('/apply', methods=['POST'])
+def apply():
+	if not login.current_user.is_authenticated():
+		return redirect(url_for('index'))
+	return redirect(url_for('home'))
 #--------------------------------------------------------------------
 #
 #						End Search Block
