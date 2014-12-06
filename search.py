@@ -90,10 +90,15 @@ def addCandidate(user_id):
 #    results = searcher.search(query)
 #    results[0]
 
-#Schema(user_id=ID(stored=True), tagline=TEXT(stored=True), summary=TEXT(stored=True), experience=TEXT(stored=True), skills=TEXT(stored=True))
 def candidateSearch(term):
     searcher = candidate_ix.searcher()
     query = MultifieldParser(["user_id", "tagline", "summary", "experience", "skills"], schema=candidate_ix.schema).parse(term)
+    results = searcher.search(query)
+    return results
+
+def jobSearch(term):
+    searcher = jobs_ix.searcher()
+    query = MultifieldParser(["job_id", "title", "skills", "description"], schema=jobs_ix.schema).parse(term)
     results = searcher.search(query)
     return results
 #with s.jobs_ix.searcher() as searcher:
