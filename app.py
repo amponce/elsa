@@ -189,6 +189,23 @@ def addJob():
 #
 #--------------------------------------------------------------------
 
+#--------------------------------------------------------------------
+#
+#						Begin Search Block
+#
+#--------------------------------------------------------------------
+@app.route('/jobSearch', methods=['GET'])
+def jobSearch():
+	query = request.args.get('job_q','')
+	results = search.jobSearch(query)
+	return render_template('search.html', job_q=query
+										, results=results)
+#--------------------------------------------------------------------
+#
+#						End Search Block
+#
+#--------------------------------------------------------------------
+
 @app.route('/saveResume', methods=['POST'])
 def saveResume():
 	if not login.current_user.is_authenticated():
