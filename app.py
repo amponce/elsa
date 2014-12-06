@@ -209,7 +209,9 @@ def viewJob(job_id):
 	if not login.current_user.is_authenticated():
 		return redirect(url_for('index'))
 	job_details = db.session.query(models.Jobs).filter_by(id=job_id).first()
-	return render_template('view_job.html', details=job_details)
+	tests = db.session.query(models.ABTests).filter_by(user_id=login.current_user.id).all()
+	return render_template('view_job.html', details=job_details
+										  , tests=tests)
 #--------------------------------------------------------------------
 #
 #						End Search Block
