@@ -9,7 +9,7 @@
             </div>
 
             {% for result in results %}
-                <p class="lead"><a href="#">{{ result['tagline'] }}</a></p>
+                <p class="lead"><a href="{{ url_for('view_candidate', candidate_id=result['user_id']) }}">{{ result['tagline'] }}</a></p>
                 <p>{{ result['summary'] }}</p><br/>
             {% else %}
                 <p class="lead">No results found...</p>

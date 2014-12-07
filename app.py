@@ -267,7 +267,7 @@ def view_candidate(candidate_id):
 	#a test was selected, then apply that view.
 
 	#see if the recruiter has viewed this profile before:
-	perspective = db.session.query(models.Views).filter((models.Views.recruiter_id==1)&(models.Views.candidate_id==3)).first()
+	perspective = db.session.query(models.Views).filter((models.Views.recruiter_id==login.current_user.id)&(models.Views.candidate_id==candidate_id)).first()
 	if perspective:
 		#look up the existing view and return it
 		recipe = db.session.query(models.Recipes).filter_by(id=perspective.recipe_id).first()
