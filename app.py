@@ -293,7 +293,8 @@ def view_candidate(candidate_id):
 
 	reqs = db.session.query(models.Jobs).filter_by(poster_id=login.current_user.id).all()
 	return render_template('candidate_view.html', recipe=recipe
-												, reqs=reqs)
+												, reqs=reqs
+												, candidate_id=candidate_id)
 
 @app.route('/saveResume', methods=['POST'])
 def saveResume():

@@ -30,12 +30,12 @@
 
                           <div class="modal-body">
 
-                              <form class="form-horizontal" role="form" method="post" action="#">
+                              <form class="form-horizontal" role="form" method="post" action="{{ url_for('apply') }}">
 
                           <div class="form-group">
                             <label class="col-sm-2 control-label">For Req</label>
                             <div class="col-sm-10">
-                                <select name="resume" class="form-control">
+                                <select name="job_id" class="form-control">
                                   <option value="0" selected>Select a Req...</option>
                                     {% for req in reqs %}
                                     <option value="{{ req.id }}">{{ req.title }}</option>
@@ -49,9 +49,9 @@
                               <button type="submit" class="btn btn-success">Add to Pipeline</button>
                             </div>
                           </div>
-                                  <input type="hidden" name="job_id" value=" details.id ">
-                                  <input type="hidden" name="applicant" value=" applicant ">
-                                  <input type="hidden" name="status" value="applied">
+                                  <input type="hidden" name="applicant" value="{{ candidate_id }}">
+                                  <input type="hidden" name="status" value="saved">
+                                  <input type="hidden" name="resume" value="{{ recipe.id }}">
                               </form>
                           </div>
                         </div>
