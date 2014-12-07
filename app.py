@@ -185,29 +185,6 @@ def addJob():
 		flash('Error posting job: %s' % e)
 		return redirect(url_for('home'))
 
-
-#--------------------------------------------------------------------
-#
-#						End Job Posting Block
-#
-#--------------------------------------------------------------------
-
-#--------------------------------------------------------------------
-#
-#						Begin Search Block
-#
-#--------------------------------------------------------------------
-@app.route('/jobSearch', methods=['GET'])
-def jobSearch():
-	if not login.current_user.is_authenticated():
-		return redirect(url_for('index'))
-
-	query = request.args.get('job_q', '')
-	results = search.jobSearch(query)
-	return render_template('search.html', job_q=query
-						   , results=results)
-
-
 @app.route('/viewJob/<int:job_id>')
 def viewJob(job_id):
 	if not login.current_user.is_authenticated():
@@ -242,6 +219,35 @@ def apply():
 		flash('Error applying to job: %s' % e)
 		return redirect(url_for('home'))
 
+#--------------------------------------------------------------------
+#
+#						End Job Posting Block
+#
+#--------------------------------------------------------------------
+
+#--------------------------------------------------------------------
+#
+#						Begin Search Block
+#
+#--------------------------------------------------------------------
+@app.route('/jobSearch', methods=['GET'])
+def jobSearch():
+	if not login.current_user.is_authenticated():
+		return redirect(url_for('index'))
+
+	query = request.args.get('job_q', '')
+	results = search.jobSearch(query)
+	return render_template('search.html', job_q=query
+						   , results=results)
+
+@app.route('/candidateSearch', methods=['GET'])
+def find_candidates():
+	if not login.current_user.is_authenticated():
+		return redirect(url_for('index'))
+
+	query = request.args.get('dude_q', '')
+	results = search.candidateSearch(query)
+	return render_template('candidate_search.html', results=results)
 
 #--------------------------------------------------------------------
 #

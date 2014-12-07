@@ -22,7 +22,7 @@
                             </form>
                         </div>
                         <div class="tab-pane" id="candidates">
-                            <form role="form" method="get" action="#">
+                            <form role="form" method="get" action="{{ url_for('find_candidates') }}">
                                 <input class="form-control input-lg" type="text" placeholder="Candidate Search..." name="dude_q">
                                 <br/>
                                 <button type="submit" class="btn btn-success btn-lg">Search</button>
