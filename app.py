@@ -79,14 +79,15 @@ def home():
 						   , tests=tests
 						   , user_id=login.current_user.id
 						   , role=role
-						   , postings=postings)
+						   , postings=postings
+						   , username=login.current_user.email)
 
 
 # --------------------------------------------------------------------
 #
 # Begin Testing Block
 #
-#--------------------------------------------------------------------
+# --------------------------------------------------------------------
 @app.route('/viewTest/<int:test_id>')
 def viewTest(test_id):
 	if not login.current_user.is_authenticated():
@@ -164,6 +165,7 @@ def newJob():
 
 	return render_template('job_posting.html', user_id=login.current_user.id)
 
+
 @app.route('/addJob', methods=['POST'])
 def addJob():
 	if not login.current_user.is_authenticated():
@@ -183,6 +185,7 @@ def addJob():
 		flash('Error posting job: %s' % e)
 		return redirect(url_for('home'))
 
+
 #--------------------------------------------------------------------
 #
 #						End Job Posting Block
@@ -199,10 +202,11 @@ def jobSearch():
 	if not login.current_user.is_authenticated():
 		return redirect(url_for('index'))
 
-	query = request.args.get('job_q','')
+	query = request.args.get('job_q', '')
 	results = search.jobSearch(query)
 	return render_template('search.html', job_q=query
-										, results=results)
+						   , results=results)
+
 
 @app.route('/viewJob/<int:job_id>')
 def viewJob(job_id):
@@ -211,8 +215,9 @@ def viewJob(job_id):
 	job_details = db.session.query(models.Jobs).filter_by(id=job_id).first()
 	tests = db.session.query(models.ABTests).filter_by(user_id=login.current_user.id).all()
 	return render_template('view_job.html', details=job_details
-										  , tests=tests
-										  , applicant=login.current_user.id)
+						   , tests=tests
+						   , applicant=login.current_user.id)
+
 
 @app.route('/apply', methods=['POST'])
 def apply():
@@ -236,6 +241,8 @@ def apply():
 	except Exception as e:
 		flash('Error applying to job: %s' % e)
 		return redirect(url_for('home'))
+
+
 #--------------------------------------------------------------------
 #
 #						End Search Block
