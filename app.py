@@ -204,12 +204,21 @@ def apply():
 
 	form = eforms.Pipeline(request.form)
 	add_application = models.Pipeline()
-	form.populate_obj(add_application)
 
 	if not form.validate_application(form):
 		flash('application exists already')
 		return redirect(url_for('home'))
 
+	coin_flip = random.randrange(0, 100)
+	control_flag = True if coin_flip < 51 else False
+	if control_flag:
+		recipe = db.session.query(models.Recipes).filter((models.Recipes.test_id==form.resume.data)&(models.Recipes.recipe=='Control')).first()
+		form.resume.data = recipe.id
+	else:
+		recipe = db.session.query(models.Recipes).filter((models.Recipes.test_id==form.resume.data)&(models.Recipes.recipe<>'Control')).first()
+		form.resume.data = recipe.id
+
+	form.populate_obj(add_application)
 	try:
 		db.session.add(add_application)
 		db.session.commit()
@@ -287,9 +296,9 @@ def view_candidate(candidate_id):
 			coin_flip = random.randrange(0, 100)
 			control_flag = True if coin_flip < 51 else False
 			if control_flag:
-				recipe = db.session.query(models.Recipes).filter((models.Recipes.test_id==22)&(models.Recipes.recipe=='Control')).first()
+				recipe = db.session.query(models.Recipes).filter((models.Recipes.test_id==active_test.id)&(models.Recipes.recipe=='Control')).first()
 			else:
-				recipe = db.session.query(models.Recipes).filter((models.Recipes.test_id==22)&(models.Recipes.recipe<>'Control')).first()
+				recipe = db.session.query(models.Recipes).filter((models.Recipes.test_id==active_test.id)&(models.Recipes.recipe<>'Control')).first()
 		else:
 			#pull standard resume
 			recipe = db.session.query(models.Resume).filter_by(user_id=login.current_user.id).first()
