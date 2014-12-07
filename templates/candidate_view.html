@@ -5,7 +5,7 @@
     <section id="contact-page">
         <div class="container">
             <div class="center">
-                <h2>View Job</h2>
+                <h2>Candidate: *name*</h2>
             </div>
 <!--            <p class="lead"> details.title </p>
             <p> details.description </p>
@@ -14,7 +14,7 @@
 
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                      Apply
+                      Add to Pipeline
                     </button>
                     <br/>
                     <br/>
@@ -25,24 +25,28 @@
                         <div class="modal-content">
                           <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Select a version to use</h4>
+                            <h4 class="modal-title" id="myModalLabel">Pipeline Options</h4>
                           </div>
 
                           <div class="modal-body">
 
-                              <form class="form-horizontal" role="form" method="post" action="{{ url_for('apply') }}">
+                              <form class="form-horizontal" role="form" method="post" action="#">
 
                           <div class="form-group">
-                            <label class="col-sm-2 control-label">Resume Test</label>
+                            <label class="col-sm-2 control-label">For Req</label>
                             <div class="col-sm-10">
                                 <select name="resume" class="form-control">
-                                  <option value="0" selected>Standard Resume</option>
+                                  <option value="0" selected>Select a Req...</option>
+                                    {% for req in reqs %}
+                                    <option value="{{ req.id }}">{{ req.title }}</option>
+                                    {% else %}
+                                    {% endfor %}
                                 </select>
                             </div>
                           </div>
                           <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                              <button type="submit" class="btn btn-success">Apply!</button>
+                              <button type="submit" class="btn btn-success">Add to Pipeline</button>
                             </div>
                           </div>
                                   <input type="hidden" name="job_id" value=" details.id ">
