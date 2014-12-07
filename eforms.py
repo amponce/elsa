@@ -74,3 +74,9 @@ class Pipeline(form.Form):
     applicant = fields.IntegerField()
     resume = fields.IntegerField()
     status = fields.StringField()
+
+    def validate_application(self, field):
+        if db.session.query(models.Pipeline).filter_by(resume=self.resume.data).count() > 0:
+            return False
+        else:
+            return True

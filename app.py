@@ -219,7 +219,23 @@ def apply():
 	if not login.current_user.is_authenticated():
 		return redirect(url_for('index'))
 
-	return redirect(url_for('home'))
+	form = eforms.Pipeline(request.form)
+	add_application = models.Pipeline()
+	form.populate_obj(add_application)
+
+	if not form.validate_application(form):
+		flash('application exists already')
+		return redirect(url_for('home'))
+
+	try:
+		db.session.add(add_application)
+		db.session.commit()
+
+		flash('Successfully applied!')
+		return redirect(url_for('home'))
+	except Exception as e:
+		flash('Error applying to job: %s' % e)
+		return redirect(url_for('home'))
 #--------------------------------------------------------------------
 #
 #						End Search Block
