@@ -73,14 +73,14 @@ def home():
 	tests = db.session.query(models.ABTests).filter_by(user_id=login.current_user.id)
 	role = db.session.query(models.Roles).filter_by(id=login.current_user.role_id).first()
 
-	postings = db.session.query(models.Jobs).filter_by(poster_id=login.current_user.id)
-
+	#postings = db.session.query(models.Jobs).filter_by(poster_id=login.current_user.id)
+	posting_dash = db.engine.execute("select  j.id, j.title, j.created, count(p.id) n from jobs j left outer join pipeline p on p.job_id = j.id where j.poster_id = %s group by 1, 2, 3", login.current_user.id)
 	return render_template('home.html', logged_in=login.current_user.is_authenticated()
 						   , resume=resume
 						   , tests=tests
 						   , user_id=login.current_user.id
 						   , role=role
-						   , postings=postings
+						   , postings=posting_dash
 						   , username=login.current_user.email)
 
 
