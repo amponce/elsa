@@ -106,3 +106,13 @@ class Pipeline(db.Model):
 
     def __repr__(self):
         return '<id %r>' % self.id
+
+class Views(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    recruiter_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    candidate_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.id'))
+    created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+
+    def __repr__(self):
+        return '<id %r>' % self.id

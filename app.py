@@ -8,6 +8,7 @@ from flask.ext.admin.contrib import sqla
 from flask.ext.admin import helpers, expose
 from sqlalchemy import and_
 import os
+import random
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
@@ -254,6 +255,41 @@ def find_candidates():
 #						End Search Block
 #
 #--------------------------------------------------------------------
+
+@app.route('/viewCandidate/<int:candidate_id>')
+def view_candidate(candidate_id):
+	if not login.current_user.is_authenticated():
+		return redirect(url_for('index'))
+
+	recruiter_id = login.current_user.id
+
+	#first check to see if this person applied, and see if
+	#a test was selected, then apply that view.
+
+	#see if the recruiter has viewed this profile before:
+	perspective = db.session.query(models.Views).filter((models.Views.recruiter_id==1)&(models.Views.candidate_id==3)).first()
+	if perspective:
+		#look up the existing view and return it
+		recipe = db.session.query(models.Recipes).filter_by(id=perspective.recipe_id).first()
+	else:
+		#get a view to return
+		active_test = db.session.query(models.ABTests).filter((models.ABTests.user_id==candidate_id) & (models.ABTests.end_date == None)).first()
+		if active_test:
+			coin_flip = random.randrange(0, 100)
+			control_flag = True if coin_flip < 51 else False
+			if control_flag:
+				recipe = db.session.query(models.Recipes).filter((models.Recipes.test_id==22)&(models.Recipes.recipe=='Control')).first()
+			else:
+				recipe = db.session.query(models.Recipes).filter((models.Recipes.test_id==22)&(models.Recipes.recipe<>'Control')).first()
+		else:
+			#pull standard resume
+			recipe = db.session.query(models.Resume).filter_by(user_id=login.current_user.id).first()
+
+		#record the view
+		view = models.Views(recruiter_id=login.current_user.id, candidate_id=candidate_id, recipe_id=recipe.id)
+		db.session.add(view)
+		db.session.commit()
+	return render_template('candidate_view.html', recipe=recipe)
 
 @app.route('/saveResume', methods=['POST'])
 def saveResume():

@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <section id="contact-page">
+        <div class="container">
+            <div class="center">
+                <h2>View Job</h2>
+            </div>
+<!--            <p class="lead">{{ details.title }}</p>
+            <p>{{ details.description }}</p>
+            <p>{{ details.skills }}</p>
+            <p>{{ details.url }}</p>-->
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                      Apply
+                    </button>
+                    <br/>
+                    <br/>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Select a version to use</h4>
+                          </div>
+
+                          <div class="modal-body">
+
+                              <form class="form-horizontal" role="form" method="post" action="{{ url_for('apply') }}">
+
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label">Resume Test</label>
+                            <div class="col-sm-10">
+                                <select name="resume" class="form-control">
+                                  <option value="0" selected>Standard Resume</option>
+                                </select>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                              <button type="submit" class="btn btn-success">Apply!</button>
+                            </div>
+                          </div>
+                                  <input type="hidden" name="job_id" value="{{ details.id }}">
+                                  <input type="hidden" name="applicant" value="{{ applicant }}">
+                                  <input type="hidden" name="status" value="applied">
+                              </form>
+                          </div>
+                        </div>
+                      </div>
+                        </div>
+        </div><!--/.container-->
+    </section><!--/#contact-page-->
+
+{% endblock %}
