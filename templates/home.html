@@ -7,11 +7,37 @@
             <div class="center">
                 <h2>Home! {{ username }}</h2>
                 <div class="controls">
+                {% if role %}
+                    {% if role.is_recruiter == 1 %}
+                        <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                            <li class="active"><a href="#jobs" data-toggle="tab">Search Jobs</a></li>
+                            <li><a href="#candidates" data-toggle="tab">Search Candidates</a></li>
+                        </ul>
+                    <div id="recruter-menu" class="tab-content">
+                        <div class="tab-pane active" id="jobs">
+                            <form role="form" method="get" action="{{ url_for('jobSearch') }}">
+                                <input class="form-control input-lg" type="text" placeholder="Job Search..." name="job_q">
+                                <br/>
+                                <button type="submit" class="btn btn-success btn-lg">Search</button>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="candidates">
+                            <form role="form" method="get" action="#">
+                                <input class="form-control input-lg" type="text" placeholder="Candidate Search..." name="dude_q">
+                                <br/>
+                                <button type="submit" class="btn btn-success btn-lg">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% else %}
+                    {% endif %}
+                {% else %}
                     <form role="form" method="get" action="{{ url_for('jobSearch') }}">
                         <input class="form-control input-lg" type="text" placeholder="Job Search..." name="job_q">
                         <br/>
                         <button type="submit" class="btn btn-success btn-lg">Search</button>
                     </form>
+                {% endif %}
                 </div>
             </div>
 
