@@ -220,6 +220,15 @@ def apply():
 		flash('Error applying to job: %s' % e)
 		return redirect(url_for('home'))
 
+@app.route('/pipeline/<int:job_id>')
+def pipeline_view(job_id):
+	#need to add check that the job poster is accessing this page.
+	if not login.current_user.is_authenticated() and login.current_user.role_id > 0:
+		flash('Not authorized to view this page.')
+		return redirect(url_for('home'))
+
+	pipeline = db.session.query(models.User, models.Pipeline).join(models.Pipeline).all()
+	return render_template('pipeline_view.html', pipeline=pipeline)
 #--------------------------------------------------------------------
 #
 #						End Job Posting Block
