@@ -52,15 +52,16 @@ def signup():
 @app.route('/login', methods=['POST'])
 def log_in():
 	form = eforms.LoginForm(request.form)
-	if helpers.validate_form_on_submit(form):
-		user = form.get_user()
+	try:
+		if helpers.validate_form_on_submit(form):
+			user = form.get_user()
 
-		check = form.validate_login(user)
-		if check:
-			login.login_user(user)
-			return redirect(url_for('home'))
-	else:
-		flash('error logging in')
+			check = form.validate_login(user)
+			if check:
+				login.login_user(user)
+				return redirect(url_for('home'))
+	except Exception as e:
+		flash('error logging in: ', e)
 		return redirect(url_for('index'))
 
 
