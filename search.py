@@ -5,7 +5,7 @@ import os
 from app import db
 import models
 
-candidates = Schema(user_id=ID(stored=True), tagline=TEXT(stored=True), summary=TEXT(stored=True), experience=TEXT(stored=True), skills=TEXT(stored=True))
+candidates = Schema(user_id=ID(stored=True), tagline=TEXT(stored=True), summary=TEXT(stored=True), resume=TEXT(stored=True))
 jobs = Schema(job_id=ID(stored=True), title=TEXT(stored=True), skills=TEXT(stored=True), description=TEXT(stored=True))
 
 if not os.path.exists('jobs_index'):
@@ -58,7 +58,7 @@ def reIndexCandidates():
 
         #data is in tuples
         for candidate in candidate_data:
-            writer.add_document(user_id=unicode(str(candidate[0].id), "utf-8"), tagline=candidate[0].tagline, summary=candidate[0].summary, experience=candidate[1].experience, skills=candidate[1].skills)
+            writer.add_document(user_id=unicode(str(candidate[0].id), "utf-8"), tagline=candidate[0].tagline, summary=candidate[0].summary, experience=candidate[1].resume)
         writer.commit()
         return True
     except:
@@ -68,7 +68,7 @@ def addCandidate(user_id):
     writer = candidate_ix.writer()
     candidate = db.session.query(models.User, models.Resume).join(models.Resume).filter_by(user_id=user_id).first()
     try:
-        writer.add_document(user_id=unicode(str(candidate[0].id), "utf-8"), tagline=candidate[0].tagline, summary=candidate[0].summary, experience=candidate[1].experience, skills=candidate[1].skills)
+        writer.add_document(user_id=unicode(str(candidate[0].id), "utf-8"), tagline=candidate[0].tagline, summary=candidate[0].summary, experience=candidate[1].resume)
         writer.commit()
         return True
     except Exception as e:
@@ -92,7 +92,7 @@ def addCandidate(user_id):
 
 def candidateSearch(term):
     searcher = candidate_ix.searcher()
-    query = MultifieldParser(["user_id", "tagline", "summary", "experience", "skills"], schema=candidate_ix.schema).parse(term)
+    query = MultifieldParser(["user_id", "tagline", "summary", "resume"], schema=candidate_ix.schema).parse(term)
     results = searcher.search(query)
     return results
 

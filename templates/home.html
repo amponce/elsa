@@ -59,44 +59,16 @@
                 <div class="tab-pane active" id="resume">
                     {% if resume %}
                         <dl class="dl-horizontal">
-                            <dt>Experience</dt>
-                            <dd>{{ resume.experience }}</dd>
-
-                            <dt>Education</dt>
-                            <dd>{{ resume.education }}</dd>
-
-                            <dt>Skills</dt>
-                            <dd>{{ resume.skills }} </dd>
+                            <dt>Resume</dt>
+                            <dd>{{ resume.resume }}</dd>
                         </dl>
                     {% else %}
                     <form class="form-horizontal" role="form" method="post" action="{{ url_for('saveResume') }}">
                         <input type="hidden" name="user_id" value={{ user_id }}>
-                      <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-2 control-label">Experience</label>
-                        <div class="col-sm-10">
-                          <textarea class="form-control" id="inputEmail3" placeholder="Email" name="experience">
-                          </textarea>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">Education</label>
-                        <div class="col-sm-10">
-                          <textarea class="form-control" id="inputPassword3" name="education">
-                          </textarea>
-                        </div>
-                      </div>
-
-                        <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">Skills</label>
-                        <div class="col-sm-10">
-                          <textarea class="form-control" id="inputPassword3" name="skills">
-                          </textarea>
-                        </div>
-                      </div>
                         <div class="form-group">
                         <label for="resume" class="col-sm-2 control-label">Resume</label>
                         <div class="col-sm-10">
-                          <textarea class="form-control" name="experience">
+                          <textarea class="form-control" name="resume">
                           </textarea>
                         </div>
                       </div>

@@ -34,9 +34,6 @@ class User(db.Model):
 class Resume(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    education = db.Column(db.String(4000))
-    experience = db.Column(db.String(4000))
-    skills = db.Column(db.String(4000))
     resume = db.Column(db.String(4000))
     created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 

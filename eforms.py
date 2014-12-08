@@ -40,14 +40,11 @@ class RegistrationForm(form.Form):
 
 class Resume(form.Form):
     user_id = fields.IntegerField()
-    education = fields.TextField()
-    experience = fields.TextField()
-    skills = fields.TextField()
     resume = fields.StringField()
 
     def validate_resume(self, field):
         if db.session.query(models.Resume).filter_by(user_id=self.user_id.data).count() > 0:
-            return validators.ValidationError('Duplicate username')
+            return False
         else:
             return True
 
