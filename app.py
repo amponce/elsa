@@ -210,14 +210,20 @@ def apply():
 		flash('application exists already')
 		return redirect(url_for('home'))
 
-	coin_flip = random.randrange(0, 100)
-	control_flag = True if coin_flip < 51 else False
-	if control_flag:
-		recipe = db.session.query(models.Recipes).filter((models.Recipes.test_id==form.resume.data)&(models.Recipes.recipe=='Control')).first()
+	perspective = db.session.query(models.Views).filter((models.Views.recruiter_id==login.current_user.id)&(models.Views.candidate_id==form.applicant.data)).first()
+	if perspective:
+		#look up the existing view and return it
+		recipe = db.session.query(models.Recipes).filter_by(id=perspective.recipe_id).first()
 		form.resume.data = recipe.id
 	else:
-		recipe = db.session.query(models.Recipes).filter((models.Recipes.test_id==form.resume.data)&(models.Recipes.recipe<>'Control')).first()
-		form.resume.data = recipe.id
+		coin_flip = random.randrange(0, 100)
+		control_flag = True if coin_flip < 51 else False
+		if control_flag:
+			recipe = db.session.query(models.Recipes).filter((models.Recipes.test_id==form.resume.data)&(models.Recipes.recipe=='Control')).first()
+			form.resume.data = recipe.id
+		else:
+			recipe = db.session.query(models.Recipes).filter((models.Recipes.test_id==form.resume.data)&(models.Recipes.recipe<>'Control')).first()
+			form.resume.data = recipe.id
 
 	form.populate_obj(add_application)
 	try:
@@ -237,7 +243,7 @@ def pipeline_view(job_id):
 		flash('Not authorized to view this page.')
 		return redirect(url_for('home'))
 
-	pipeline = db.session.query(models.User, models.Pipeline).join(models.Pipeline).all()
+	pipeline = db.session.query(models.User, models.Pipeline).join(models.Pipeline).filter(models.Pipeline.job_id==job_id).all()
 	return render_template('pipeline_view.html', pipeline=pipeline)
 #--------------------------------------------------------------------
 #
