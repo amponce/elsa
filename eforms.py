@@ -43,6 +43,7 @@ class Resume(form.Form):
     education = fields.TextField()
     experience = fields.TextField()
     skills = fields.TextField()
+    resume = fields.StringField()
 
     def validate_resume(self, field):
         if db.session.query(models.Resume).filter_by(user_id=self.user_id.data).count() > 0:
