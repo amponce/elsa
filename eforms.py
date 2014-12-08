@@ -18,7 +18,7 @@ class LoginForm(form.Form):
         if not check_password_hash(user.password, self.password.data):
         # to compare plain text passwords use
         # if user.password != self.password.data:
-            return validators.ValidationError('Invalid password')
+            return False
 
         return True
 

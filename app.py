@@ -60,6 +60,10 @@ def log_in():
 			if check:
 				login.login_user(user)
 				return redirect(url_for('home'))
+			else:
+				flash('Wrong login/pw!')
+				return redirect(url_for('signin'))
+
 	except Exception as e:
 		flash('error logging in: ', e)
 		return redirect(url_for('index'))
