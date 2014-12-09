@@ -149,7 +149,7 @@ def addRecipe():
 		return render_template(url_for('home'))
 
 	except Exception as e:
-		flash('error: %s' % e)
+		flash('error:', e)
 		return redirect(url_for('home'))
 
 
