@@ -1,6 +1,6 @@
 from flask import Flask, url_for, render_template, flash, request, session, redirect, g
 from flask.ext.sqlalchemy import SQLAlchemy
-
+import datetime
 from flask.ext import admin, login
 from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms import form, fields, validators
@@ -75,14 +75,16 @@ def home():
 		return redirect(url_for('index'))
 
 	resume = db.session.query(models.Resume).filter_by(user_id=login.current_user.id).first()
-	tests = db.session.query(models.ABTests).filter_by(user_id=login.current_user.id)
+	active_tests = db.session.query(models.ABTests).filter((models.ABTests.user_id == login.current_user.id) & (models.ABTests.end_date == None)).all()
+	completed_tests = db.session.query(models.ABTests).filter((models.ABTests.user_id == login.current_user.id) & (models.ABTests.end_date != None)).all()
 	role = db.session.query(models.Roles).filter_by(id=login.current_user.role_id).first()
 
 	#postings = db.session.query(models.Jobs).filter_by(poster_id=login.current_user.id)
 	posting_dash = db.engine.execute("select  j.id, j.title, j.created, count(p.id) n from jobs j left outer join pipeline p on p.job_id = j.id where j.poster_id = %s group by 1, 2, 3", login.current_user.id)
 	return render_template('home.html', logged_in=login.current_user.is_authenticated()
 						   , resume=resume
-						   , tests=tests
+						   , tests=active_tests
+						   , completed_test=completed_tests
 						   , user_id=login.current_user.id
 						   , role=role
 						   , postings=posting_dash
@@ -127,6 +129,22 @@ def addTest():
 							   , resume=resume)
 	except Exception as e:
 		flash('error: ', e)
+		return redirect(url_for('home'))
+
+
+@app.route('/endTest/<int:test_id>')
+def endTest(test_id):
+	if not login.current_user.is_authenticated():
+		return redirect(url_for('index'))
+	test = db.session.query(models.ABTests).filter_by(id=test_id).first()
+	test.end_date = datetime.datetime.utcnow
+	try:
+		db.session.add(test)
+		db.session.commit()
+		flash('Test successfully ended!')
+		return redirect(url_for('home'))
+	except Exception as e:
+		flash('Error ending test: ', e)
 		return redirect(url_for('home'))
 
 
