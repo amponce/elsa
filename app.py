@@ -350,16 +350,30 @@ def saveResume():
 
 	form = eforms.Resume(request.form)
 	resume = models.Resume()
-	form.populate_obj(resume)
+	check = form.validate_resume(form)
+	if check:
+		updated_resume = db.session.query(models.Resume).filter_by(user_id=login.current_user.id).first()
+		updated_resume.resume = form.resume.data
 
-	if form.validate_resume(form) == True:
-		db.session.add(resume)
-		db.session.commit()
-		search.addCandidate(resume.user_id)
-		flash('resume saved')
+		try:
+			db.session.add(updated_resume)
+			db.session.commit()
+			#need to update the index.
+			flash('Resume Updated!')
+		except Exception as e:
+			flash('Error updating resume: ', e)
+		return redirect(url_for('home'))
 	else:
-		flash('resume exists')
-	return redirect(url_for('home'))
+		form.populate_obj(resume)
+
+		try:
+			db.session.add(resume)
+			db.session.commit()
+			search.addCandidate(resume.user_id)
+			flash('Resume Saved!')
+		except Exception as e:
+			flash('Error saving Resume: ', e)
+		return redirect(url_for('home'))
 
 
 @app.route('/register', methods=['POST'])

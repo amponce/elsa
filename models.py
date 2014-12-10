@@ -36,6 +36,7 @@ class Resume(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     resume = db.Column(db.String(4000))
     created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    modified = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     def __repr__(self):
         return '<id %r>' % self.id
