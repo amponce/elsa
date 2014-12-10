@@ -84,7 +84,7 @@ def home():
 	return render_template('home.html', logged_in=login.current_user.is_authenticated()
 						   , resume=resume
 						   , tests=active_tests
-						   , completed_test=completed_tests
+						   , completed_tests=completed_tests
 						   , user_id=login.current_user.id
 						   , role=role
 						   , postings=posting_dash
