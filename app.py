@@ -356,9 +356,10 @@ def view_candidate(candidate_id):
 			db.session.add(view)
 			db.session.commit()
 
-
+	resume = db.session.query(models.Recipes).filter_by(id=recipe.id).first()
 	reqs = db.session.query(models.Jobs).filter_by(poster_id=login.current_user.id).all()
 	return render_template('candidate_view.html', recipe=recipe
+						   						, resume=resume.version
 												, reqs=reqs
 												, candidate_id=candidate_id)
 
