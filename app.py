@@ -312,23 +312,25 @@ def view_candidate(candidate_id):
 
 	#first check to see if this person applied, and see if
 	#a test was selected, then apply that view.
-	applied = db.session.query(models.Pipeline).filter((models.Views.candidate_id==candidate_id)&(models.Views.recruiter_id==recruiter_id)).first()
-	if applied:
+	applied = db.session.query(models.Pipeline).filter((models.Pipeline.applicant==candidate_id)&(models.Pipeline.status=='applied')).first()
+	if applied.id:
 		view = models.Views(recruiter_id=login.current_user.id, candidate_id=candidate_id, recipe_id=applied.resume)
 		active_test = db.session.query(models.ABTests).filter((models.ABTests.user_id==candidate_id) & (models.ABTests.end_date == None)).first()
 
-		if active_test:
-			recipe = db.session.query(models.Recipes).filter((models.Recipes.test_id==active_test.id)&(models.Recipes.id==view.resume)).first()
+		if active_test.id:
+			recipe = db.session.query(models.Recipes).filter((models.Recipes.test_id==active_test.id)&(models.Recipes.id==view.recipe_id)).first()
 		else:
 			#pull standard resume
 			recipe = db.session.query(models.Resume).filter_by(user_id=login.current_user.id).first()
 
+		view = models.Views(recruiter_id=login.current_user.id, candidate_id=candidate_id, recipe_id=recipe.id)
 		try:
 			db.session.add(view)
 			db.session.commit()
 			flash('Application saved! (existing)')
 		except Exception as e:
-			flash('Error saving application: ', e)
+			db.session.rollback()
+			flash('Error saving application: %s' % e)
 	else:
 		#see if the recruiter has viewed this profile before:
 		perspective = db.session.query(models.Views).filter((models.Views.recruiter_id==login.current_user.id)&(models.Views.candidate_id==candidate_id)).first()
