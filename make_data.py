@@ -2,6 +2,7 @@ from faker import Factory
 from app import db
 import models
 from werkzeug.security import generate_password_hash
+import random
 
 fake = Factory.create()
 
@@ -16,6 +17,8 @@ def create_users(n):
         user.summary = fake.text(300)
         user.name = fake.name()
 
+        user.role_id = 1 if random.randrange(0, 100) > 90 else 0
+
         try:
             db.session.add(user)
             db.session.commit()
@@ -26,3 +29,4 @@ def create_users(n):
     msg = str(s) + ' user records created, ' + str(e) + ' errors.'
     return msg
 
+#presuming there's more than 15 records existing
