@@ -312,30 +312,45 @@ def view_candidate(candidate_id):
 
 	#first check to see if this person applied, and see if
 	#a test was selected, then apply that view.
-
-	#see if the recruiter has viewed this profile before:
-	perspective = db.session.query(models.Views).filter((models.Views.recruiter_id==login.current_user.id)&(models.Views.candidate_id==candidate_id)).first()
-	if perspective:
-		#look up the existing view and return it
-		recipe = db.session.query(models.Recipes).filter_by(id=perspective.recipe_id).first()
-	else:
-		#get a view to return
-		active_test = db.session.query(models.ABTests).filter((models.ABTests.user_id==candidate_id) & (models.ABTests.end_date == None)).first()
-		if active_test:
-			coin_flip = random.randrange(0, 100)
-			control_flag = True if coin_flip < 51 else False
-			if control_flag:
-				recipe = db.session.query(models.Recipes).filter((models.Recipes.test_id==active_test.id)&(models.Recipes.recipe=='Control')).first()
+	applied = db.session.query(models.Pipeline).filter((models.Views.candidate_id=candidate_id)&(models.Views.recruiter_id=recruiter_id)).first()
+	if applied:
+		view = models.Views(recruiter_id=login.current_user.id, candidate_id=candidate_id, recipe_id=applied.resume)
+			active_test = db.session.query(models.ABTests).filter((models.ABTests.user_id==candidate_id) & (models.ABTests.end_date == None)).first()
+			if active_test:
+				recipe = db.session.query(models.Recipes).filter((models.Recipes.test_id==active_test.id)&(models.Recipes.id==view.resume)).first()
 			else:
-				recipe = db.session.query(models.Recipes).filter((models.Recipes.test_id==active_test.id)&(models.Recipes.recipe<>'Control')).first()
+				#pull standard resume
+				recipe = db.session.query(models.Resume).filter_by(user_id=login.current_user.id).first()
+		try:
+			db.session.add(view)
+			db.session.commit()
+			flash('Application saved! (existing)')
+		except Exception as e:
+			flash('Error saving application: ', e)
+	else:
+		#see if the recruiter has viewed this profile before:
+		perspective = db.session.query(models.Views).filter((models.Views.recruiter_id==login.current_user.id)&(models.Views.candidate_id==candidate_id)).first()
+		if perspective:
+			#look up the existing view and return it
+			recipe = db.session.query(models.Recipes).filter_by(id=perspective.recipe_id).first()
 		else:
-			#pull standard resume
-			recipe = db.session.query(models.Resume).filter_by(user_id=login.current_user.id).first()
+			#get a view to return
+			active_test = db.session.query(models.ABTests).filter((models.ABTests.user_id==candidate_id) & (models.ABTests.end_date == None)).first()
+			if active_test:
+				coin_flip = random.randrange(0, 100)
+				control_flag = True if coin_flip < 51 else False
+				if control_flag:
+					recipe = db.session.query(models.Recipes).filter((models.Recipes.test_id==active_test.id)&(models.Recipes.recipe=='Control')).first()
+				else:
+					recipe = db.session.query(models.Recipes).filter((models.Recipes.test_id==active_test.id)&(models.Recipes.recipe<>'Control')).first()
+			else:
+				#pull standard resume
+				recipe = db.session.query(models.Resume).filter_by(user_id=login.current_user.id).first()
 
-		#record the view
-		view = models.Views(recruiter_id=login.current_user.id, candidate_id=candidate_id, recipe_id=recipe.id)
-		db.session.add(view)
-		db.session.commit()
+			#record the view
+			view = models.Views(recruiter_id=login.current_user.id, candidate_id=candidate_id, recipe_id=recipe.id)
+			db.session.add(view)
+			db.session.commit()
 
 
 	reqs = db.session.query(models.Jobs).filter_by(poster_id=login.current_user.id).all()
