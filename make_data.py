@@ -32,7 +32,8 @@ def create_users(n):
                 makeJobPosting(user.id)
 
             s += 1
-        except Exception as e:
+        except Exception as err_msg:
+            print 'Error occured: %s' % err_msg
             e += 1
             db.session.rollback()
     msg = str(s) + ' user records created, ' + str(e) + ' errors.'
@@ -74,7 +75,7 @@ def makeRecipes(test_id, resume):
     for x in range(1, 3):
         test_recipe = 'Control' if x == 1 else 'Recipe B'
         recipes = models.Recipes()
-        recipe.test_id = test_id
+        recipes.test_id = test_id
         recipes.recipe = test_recipe
 
         recipe_b = fake.text(300) + '\n' + fake.text(300) + '\n' + fake.text(300)
