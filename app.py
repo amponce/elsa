@@ -295,6 +295,8 @@ def find_candidates():
 
 	query = request.args.get('dude_q', '')
 	results = search.candidateSearch(query)
+	records = len(results)
+	pages = records / 25
 	return render_template('candidate_search.html', results=results)
 
 #--------------------------------------------------------------------
