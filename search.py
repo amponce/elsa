@@ -5,7 +5,7 @@ import os
 from app import db
 import models
 
-candidates = Schema(user_id=ID(stored=True), tagline=TEXT(stored=True), summary=TEXT(stored=True), resume=TEXT(stored=True))
+candidates = Schema(user_id=ID(stored=True), tagline=TEXT(stored=True), summary=TEXT(stored=True), experience=TEXT(stored=True))
 jobs = Schema(job_id=ID(stored=True), title=TEXT(stored=True), skills=TEXT(stored=True), description=TEXT(stored=True))
 
 if not os.path.exists('jobs_index'):
@@ -61,7 +61,8 @@ def reIndexCandidates():
             writer.add_document(user_id=unicode(str(candidate[0].id), "utf-8"), tagline=candidate[0].tagline, summary=candidate[0].summary, experience=candidate[1].resume)
         writer.commit()
         return True
-    except:
+    except Exception as err_msg:
+        print "Error reindexing: %s" % err_msg
         return False
 
 def addCandidate(user_id):
