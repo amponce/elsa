@@ -294,10 +294,13 @@ def find_candidates():
 		return redirect(url_for('index'))
 
 	query = request.args.get('dude_q', '')
+	page_num = request.args.get('page', '')
+
 	results = search.candidateSearch(query)
 	records = len(results)
 	pages = records / 25
-	return render_template('candidate_search.html', results=results)
+	return render_template('candidate_search.html', results=results
+												  , pages=pages)
 
 #--------------------------------------------------------------------
 #
