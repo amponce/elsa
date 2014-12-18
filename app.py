@@ -297,10 +297,14 @@ def find_candidates():
 	page_num = request.args.get('page', '')
 
 	results = search.candidateSearch(query)
+
+	#search_results = results if not page_num else results[page_num*10:page_num*10+10]
 	records = len(results)
 	pages = records / 25
 	return render_template('candidate_search.html', results=results
-												  , pages=pages)
+												  , pages=pages
+												  , current_page=page_num
+												  , query=query)
 
 #--------------------------------------------------------------------
 #
