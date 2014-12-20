@@ -330,7 +330,7 @@ def view_candidate(candidate_id):
 		active_test = db.session.query(models.ABTests).filter((models.ABTests.user_id==candidate_id) & (models.ABTests.end_date == None)).first()
 
 		if active_test.id:
-			recipe = db.session.query(models.Recipes).filter((models.Recipes.test_id==active_test.id)&(models.Recipes.id==view.recipe_id)).first()
+			recipe = db.session.query(models.Recipes).filter_by(id=view.recipe_id).first()
 		else:
 			#pull standard resume
 			recipe = db.session.query(models.Resume).filter_by(user_id=login.current_user.id).first()
