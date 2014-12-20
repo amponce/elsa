@@ -91,16 +91,16 @@ def addCandidate(user_id):
 #    results = searcher.search(query)
 #    results[0]
 
-def candidateSearch(term):
+def candidateSearch(term, page):
     searcher = candidate_ix.searcher()
     query = MultifieldParser(["user_id", "tagline", "summary", "experience"], schema=candidate_ix.schema).parse(term)
-    results = searcher.search(query)
+    results = searcher.search_page(query, page)
     return results
 
-def jobSearch(term):
+def jobSearch(term, page):
     searcher = jobs_ix.searcher()
     query = MultifieldParser(["job_id", "title", "skills", "description"], schema=jobs_ix.schema).parse(term)
-    results = searcher.search(query)
+    results = searcher.search_page(query, page)
     return results
 #with s.jobs_ix.searcher() as searcher:
 #    query = QueryParser("job_id", s.jobs_ix.schema).parse("1")
