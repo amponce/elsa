@@ -180,19 +180,17 @@ def addRecipe():
 	recipes = request.form.getlist('recipe')
 	versions = request.form.getlist('version')
 
-	try:
-		for i, value in enumerate(recipes):
-			recipe = models.Recipes(test_id=test_id, recipe=value, version=versions[i])
+	for i, value in enumerate(recipes):
+		recipe = models.Recipes(test_id=test_id, recipe=value, version=versions[i])
+		try:
 			db.session.add(recipe)
 			db.session.commit()
+		except Exception as e:
+			flash('error saving recipe: ', e)
+			db.session.rollback()
 
-		flash('Successfully added recipes!')
-		return render_template(url_for('home'))
-
-	except Exception as e:
-		flash('error:', e)
-		return redirect(url_for('home'))
-
+	flash('Successfully added recipes!')
+	return redirect(url_for('home'))
 
 #--------------------------------------------------------------------
 #
