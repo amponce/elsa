@@ -110,6 +110,23 @@ def viewTest(test_id):
 	recipes = db.session.query(models.Recipes).filter_by(test_id=test_id)
 	test_details = db.session.query(models.ABTests).filter_by(id=test_id).first()
 
+	dash_query = '''    select  r.recipe,
+								r.version,
+								count(distinct v.id) views,
+								count(distinct case when p.status = 'saved' then p.id else null end) saves
+						from ab_tests t
+						join recipes r
+						on r.test_id = t.id
+						left outer join views v
+						on v.recipe_id = r.id
+						left outer join pipeline p
+						on p.resume = r.id
+						where p.applicant = %s
+						and t.id = %s
+						group by 1, 2
+						'''
+
+	test_data = db.engine.execute(dash_query, (login.current_user.id, test_id))
 	return render_template('view_test.html', test_id=test_id
 						   , recipes=recipes
 						   , test_details=test_details)
