@@ -80,10 +80,12 @@ def home():
 
 	#saving this for admin portal
 	role = db.session.query(models.Roles).filter_by(id=login.current_user.role_id).first()
-	#user_data = db.session.query(models.User).
+	#user_data = db.session.query(models.User).filter_by(id=login.current_user.id).first()
 
-	#postings = db.session.query(models.Jobs).filter_by(poster_id=login.current_user.id)
+	# need to only execute this based on role.
 	posting_dash = db.engine.execute("select  j.id, j.title, j.created, count(p.id) n from jobs j left outer join pipeline p on p.job_id = j.id where j.poster_id = %s group by 1, 2, 3", login.current_user.id)
+	jobs_applied = db.session.query(models.Jobs, models.Pipeline).join(models.Pipeline).filter((models.Pipeline.applicant==login.current_user.id) & (models.Pipeline.status=='applied')).all()
+
 	return render_template('home.html', logged_in=login.current_user.is_authenticated()
 						   , resume=resume
 						   , tests=active_tests
@@ -91,6 +93,7 @@ def home():
 						   , user_id=login.current_user.id
 						   , role=role
 						   , postings=posting_dash
+						   , jobs_applied=jobs_applied
 						   , username=login.current_user.email)
 
 
