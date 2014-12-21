@@ -128,8 +128,8 @@ def viewTest(test_id):
 
 	test_data = db.engine.execute(dash_query, (login.current_user.id, test_id))
 	return render_template('view_test.html', test_id=test_id
-						   , recipes=recipes
-						   , test_details=test_details)
+						   , recipes=test_data
+						   , test_details=test_data)
 
 
 @app.route('/addTest', methods=['POST'])

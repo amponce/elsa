@@ -28,8 +28,12 @@
                         <tr>
                             <td>{{ recipe.recipe }}</td>
                             <td>{{ recipe.version }}</td>
-                            <td> 0 </td>
-                            <td> 0 </td>
+                            <td>{{ recipe.views }}</td>
+                            {% if recipe.views > 0 %}
+                                <td>{{ recipe.saves / recipe.views * 100 }}</td>
+                            {% else %}
+                                <td>0</td>
+                            {% endif %}
                         </tr>
                     {% else %}
                         <tr>Error retrieving records.</tr>
