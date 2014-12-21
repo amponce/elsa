@@ -299,7 +299,8 @@ def jobSearch():
 	return render_template('search.html', job_q=query
 						   , results=results
 						   , pages=pages
-						   , current_page=page_num)
+						   , current_page=page_num
+						   , query=query)
 
 @app.route('/candidateSearch', methods=['GET'])
 def find_candidates():
