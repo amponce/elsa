@@ -77,7 +77,10 @@ def home():
 	resume = db.session.query(models.Resume).filter_by(user_id=login.current_user.id).first()
 	active_tests = db.session.query(models.ABTests).filter((models.ABTests.user_id == login.current_user.id) & (models.ABTests.end_date == None)).all()
 	completed_tests = db.session.query(models.ABTests).filter((models.ABTests.user_id == login.current_user.id) & (models.ABTests.end_date != None)).all()
+
+	#saving this for admin portal
 	role = db.session.query(models.Roles).filter_by(id=login.current_user.role_id).first()
+	#user_data = db.session.query(models.User).
 
 	#postings = db.session.query(models.Jobs).filter_by(poster_id=login.current_user.id)
 	posting_dash = db.engine.execute("select  j.id, j.title, j.created, count(p.id) n from jobs j left outer join pipeline p on p.job_id = j.id where j.poster_id = %s group by 1, 2, 3", login.current_user.id)
@@ -284,9 +287,19 @@ def jobSearch():
 		return redirect(url_for('index'))
 
 	query = request.args.get('job_q', '')
-	results = search.jobSearch(query)
+	page_num = request.args.get('page', '')
+
+	if page_num:
+		results = search.jobSearch(query, page_num)
+	else:
+		results = search.jobSearch(query, 1)
+
+	records = len(results)
+	pages = records / 10
 	return render_template('search.html', job_q=query
-						   , results=results)
+						   , results=results
+						   , pages=pages
+						   , current_page=page_num)
 
 @app.route('/candidateSearch', methods=['GET'])
 def find_candidates():
@@ -325,7 +338,9 @@ def view_candidate(candidate_id):
 	#first check to see if this person applied, and see if
 	#a test was selected, then apply that view.
 	applied = db.session.query(models.Pipeline).filter((models.Pipeline.applicant==candidate_id)&(models.Pipeline.status=='applied')).first()
-	if applied.id:
+	perspective = db.session.query(models.Views).filter((models.Views.recruiter_id==login.current_user.id)&(models.Views.candidate_id==candidate_id)).first()
+
+	if applied.id and not perspective.id:
 		view = models.Views(recruiter_id=login.current_user.id, candidate_id=candidate_id, recipe_id=applied.resume)
 		active_test = db.session.query(models.ABTests).filter((models.ABTests.user_id==candidate_id) & (models.ABTests.end_date == None)).first()
 
@@ -383,7 +398,8 @@ def saveResume():
 	form = eforms.Resume(request.form)
 	resume = models.Resume()
 	check = form.validate_resume(form)
-	if check:
+
+	if not check:
 		updated_resume = db.session.query(models.Resume).filter_by(user_id=login.current_user.id).first()
 		updated_resume.resume = form.resume.data
 
