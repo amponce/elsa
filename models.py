@@ -10,6 +10,9 @@ class User(db.Model):
     tagline = db.Column(db.String(255))
     summary = db.Column(db.String(4000))
     role_id = db.Column(db.Integer, default=0)
+    location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
+    field_id = db.Column(db.Integer, db.ForeignKey('field.id'))
+    industry_id = db.Column(db.Integer, db.ForeignKey('industry.id'))
 
     # Flask-Login integration
     def is_authenticated(self):
@@ -27,6 +30,30 @@ class User(db.Model):
     # Required for administrative interface
     def __unicode__(self):
         return self.email
+
+    def __repr__(self):
+        return '<id %r>' % self.id
+
+class Location(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(4000))
+    created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+
+    def __repr__(self):
+        return '<id %r>' % self.id
+
+class Field(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(4000))
+    created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+
+    def __repr__(self):
+        return '<id %r>' % self.id
+
+class Industry(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(4000))
+    created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     def __repr__(self):
         return '<id %r>' % self.id
@@ -91,6 +118,7 @@ class Jobs(db.Model):
     created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     expires = db.Column(db.DateTime)
     url = db.Column(db.String(4000))
+    location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
 
     def __repr__(self):
         return '<id %r>' % self.id
