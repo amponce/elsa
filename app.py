@@ -86,6 +86,10 @@ def home():
 	posting_dash = db.engine.execute("select  j.id, j.title, j.created, count(p.id) n from jobs j left outer join pipeline p on p.job_id = j.id where j.poster_id = %s group by 1, 2, 3", login.current_user.id)
 	jobs_applied = db.session.query(models.Jobs, models.Pipeline).join(models.Pipeline).filter((models.Pipeline.applicant==login.current_user.id) & (models.Pipeline.status=='applied')).all()
 
+	user_location = db.session.query(models.Location).join(models.User).filter(models.User.id==login.current_user.id).first()
+	user_field = db.session.query(models.Field).join(models.User).filter(models.User.id==login.current_user.id).first()
+	user_industry = db.session.query(models.Industry).join(models.User).filter(models.User.id==login.current_user.id).first()
+
 	return render_template('home.html', logged_in=login.current_user.is_authenticated()
 						   , resume=resume
 						   , tests=active_tests
@@ -94,7 +98,10 @@ def home():
 						   , role=role
 						   , postings=posting_dash
 						   , jobs_applied=jobs_applied
-						   , username=login.current_user.email)
+						   , username=login.current_user.email
+						   , user_location=user_location
+						   , user_field=user_field
+						   , user_industry=user_industry)
 
 
 # --------------------------------------------------------------------

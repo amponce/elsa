@@ -57,6 +57,57 @@
             </ul>
             <div id="my-tab-content" class="tab-content">
                 <div class="tab-pane active" id="resume">
+<!-- location info -->
+<dl class="dl-horizontal">
+  <dt>Location</dt>
+    {% if user_location.name %}
+        <dd>{{ user_location.name }}</dd>
+    {% else %}
+        <dd>
+            <form class="form-inline" role="form">
+              <div class="form-group">
+                <label for="inputPassword2" class="sr-only">Password</label>
+                    <select class="form-control">
+                      <option selected>San Diego, CA</option>
+                    </select>
+              </div>
+              <button type="submit" class="btn btn-xs">Go</button>
+            </form>
+        </dd>
+    {% endif %}
+    <dt>Field</dt>
+    {% if user_field.name %}
+        <dd>{{ user_field.name }}</dd>
+    {% else %}
+        <dd>
+            <form class="form-inline" role="form">
+              <div class="form-group">
+                <label for="inputPassword2" class="sr-only">Password</label>
+                    <select class="form-control">
+                      <option selected>Add a Field...</option>
+                    </select>
+              </div>
+              <button type="submit" class="btn btn-xs">Go</button>
+            </form>
+        </dd>
+    {% endif %}
+    <dt>Industry</dt>
+    {% if user_industry.name %}
+        <dd>{{ user_industry.name }}</dd>
+    {% else %}
+        <dd>
+            <form class="form-inline" role="form">
+              <div class="form-group">
+                <label for="inputPassword2" class="sr-only">Password</label>
+                    <select class="form-control">
+                      <option selected>Add an industry...</option>
+                    </select>
+              </div>
+              <button type="submit" class="btn btn-xs">Go</button>
+            </form>
+        </dd>
+    {% endif %}
+</dl>
                     {% if resume %}
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editresume">

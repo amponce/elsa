@@ -37,6 +37,9 @@ class User(db.Model):
 class Location(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(4000))
+    area = db.Column(db.String(4000))
+    city = db.Column(db.String(4000))
+    state = db.Column(db.String(4000))
     created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     def __repr__(self):
