@@ -122,6 +122,8 @@ class Jobs(db.Model):
     expires = db.Column(db.DateTime)
     url = db.Column(db.String(4000))
     location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
+    field_id = db.Column(db.Integer, db.ForeignKey('field.id'))
+    industry_id = db.Column(db.Integer, db.ForeignKey('industry.id'))
 
     def __repr__(self):
         return '<id %r>' % self.id
