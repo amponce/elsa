@@ -1,786 +1,424 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Home | Corlate</title>
-	
-	<!-- core CSS -->
-    <link href="static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="static/css/font-awesome.min.css" rel="stylesheet">
-    <link href="static/css/animate.min.css" rel="stylesheet">
-    <link href="static/css/prettyPhoto.css" rel="stylesheet">
-    <link href="static/css/main.css" rel="stylesheet">
-    <link href="static/css/responsive.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->       
-    <link rel="shortcut icon" href="static/images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="static/images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="static/images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="static/images/ico/apple-touch-icon-57-precomposed.png">
-</head><!--/head-->
 
-<body class="homepage">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="description" content="The Page Description">
+		<style type="text/css">@-ms-viewport{width: device-width;}</style>
+		<title>Project Elsa</title>
+		<link href="../static/elsa-fresh/css/style.css" rel="stylesheet">
+		<link href="../static/elsa-fresh/css/layers.min.css" rel="stylesheet">
+		<link href="../static/elsa-fresh/css/font-awesome.min.css" rel="stylesheet">
+  
+		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+		<![endif]-->
+		<link rel="icon" href="favicon.ico">
+		<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="img/apple-touch-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="img/apple-touch-icon-152x152.png">			
+	</head>
+
+<body class="page">
+
+		<header role="banner" class="transparent light">
+			<div class="row">
+				<div class="nav-inner row-content buffer-left buffer-right even clear-after">
+					<div id="brand">
+						<h1 class="reset"><!--<img src="img/logo.png" alt="logo">--><a href="home-01.html">Project Elsa</a></h1>
+					</div><!-- brand -->
+					<a id="menu-toggle" href="#"><i class="fa fa-bars fa-lg"></i></a>
+					<nav>
+						<ul class="reset" role="navigation">
+							<li class="menu-item">
+								<a href="index.html">Home</a>
+								
+							</li>
+<!--
+							<li class="menu-item">
+								<a href="about-us.html">About us</a>
+								
+							</li>
+							<li class="menu-item">
+								<a href="services.html">Services</a>
+								
+							</li>
+							<li class="menu-item"><a href="resume.html">Resume</a></li>
+							<li class="menu-item"><a href="developers.html">Developers</a></li>
+
+							<li class="menu-item">
+								<a href="search.html">Search</a>
+														
+							</li>
+-->
+							<li class="menu-item">
+                          <a href="{{ url_for('signup') }}">Sign Up</a></li>     
+						</ul>
+					</nav>
+				</div><!-- row-content -->	
+			</div><!-- row -->	
+		</header>
+
+		<main role="main">
+			<div id="intro-wrap">
+				<div id="intro" class="preload darken" data-autoplay="5000" data-navigation="true" data-pagination="true" data-transition="fadeUp">					
+					<div class="intro-item" style="background-image: url(https://unsplash.imgix.net/photo-1416512107527-34cebecbac33?q=75&w=1080&h=1080&fit=max&fm=jpg&s=bf51f6e2da67e1c777e7f71ac58da3c2);">
+						<div class="caption">
+							<h2>Project Elsa</h2>
+							<p>Taking LinkedIn by storm</p>
+							
+							<a class="button white transparent" href="#">Read More</a>
+						</div><!-- caption -->
+										
+					</div>									
+					<div class="intro-item" style="background-image: url(https://ununsplash.imgix.net/uploads/1413399939678471ea070/2c0343f7?dpr=2&fit=crop&fm=jpg&h=725&q=75&w=1050);">
+						<div class="caption">
+							<h2>Lab desk</h2>
+							<p>Tools are all we need for creating good stuff</p>
+							<a class="button white transparent" href="#">Read More</a>
+						</div><!-- caption -->
+						<div class="photocaption">
+							<h4>A shot by <a href="http://madebyvadim.com/">Vadim Sherbakov</a></h4>
+						</div><!-- photocaption -->						
+					</div>						
+					<div class="intro-item" style="background-image: url(https://unsplash.imgix.net/reserve/UJO0jYLtRte4qpyA37Xu_9X6A7388.jpg?dpr=2&fit=crop&fm=jpg&h=700&q=75&w=1050);">
+						<div class="caption">
+							<h2>Jules &amp; Jim</h2>
+							<p>A team with over 20 years of realty experience</p>
+							<a class="button white transparent" href="#">Read More</a>
+						</div><!-- caption -->
+						<div class="photocaption">
+							<h4>Shot by <a href="http://dribbble.com/JustinMezzell">Justin Mezzell</a></h4>
+						</div><!-- photocaption -->						
+					</div>		
+					<div class="intro-item" style="background-image: url(https://unsplash.imgix.net/uploads/14131528928453585b6dc/829d24cf?dpr=2&fit=crop&fm=jpg&h=700&q=75&w=1050);">
+						<div class="caption">
+							<h2>Project Elsa</h2>
+							<p>We love to work inside dark rooms</p>
+							<a class="button white transparent" href="#">Read More</a>
+						</div><!-- caption -->
+						<div class="photocaption">
+							<h4>Shot by <a href="http://dribbble.com/shots/883285-my-workspace">Eddie Lobanovskiy</a></h4>
+						</div><!-- photocaption -->						
+					</div>																		
+				</div><!-- intro -->
+			</div><!-- intro-wrap -->
+
+			<div id="main">
+
+				<section class="row section call-to-action">
+					<div class="row-content buffer even">
+						<p>Welcome to project Elsa</p>
+						<a class="button red" href="{{ url_for('signup') }}">Sign Up</a>
+					</div>
+				</section>
+
+				<section class="row section">
+					<div class="row-content buffer even clear-after">
+						<div class="column four">
+							<div class="small-icon red"><i class="icon icon-paperfly"></i></div>
+							<div class="small-icon-text clear-after">
+								<h4>Landing page</h4>
+								<p class="text-xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</div>
+						</div>
+						<div class="column four">
+							<div class="small-icon red"><i class="icon icon-diamond"></i></div>
+							<div class="small-icon-text clear-after">
+								<h4>Portfolio</h4>
+								<p class="text-xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</div>
+						</div>
+						<div class="column four last">
+							<div class="small-icon red"><i class="icon icon-crown"></i></div>
+							<div class="small-icon-text clear-after">
+								<h4>Resume</h4>
+								<p class="text-xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</div>
+						</div>
+						<div class="column four">
+							<div class="small-icon red"><i class="icon icon-tablet"></i></div>
+							<div class="small-icon-text clear-after">
+								<h4>Responsive</h4>
+								<p class="text-xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</div>
+						</div>
+						<div class="column four">
+							<div class="small-icon red"><i class="icon icon-megaphone"></i></div>
+							<div class="small-icon-text clear-after">
+								<h4>Blog</h4>
+								<p class="text-xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</div>
+						</div>
+						<div class="column four last">
+							<div class="small-icon red"><i class="icon icon-multiview"></i></div>
+							<div class="small-icon-text clear-after">
+								<h4>Layer CSS</h4>
+								<p class="text-xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</div>
+						</div>
+					</div>
+				</section>	
+
+				<section class="row section">
+					<div class="row-content buffer even clear-after">					
+						<div class="section-title"><h3>Latest News</h3></div>
+						<div class="grid-items blog-section masonry-style preload">
+							<article class="item column six">
+								<a href="#">
+									<figure><img src="http://placehold.it/800x600/ddd/fff&text=Beetle%20image" alt=""><span class="blog-overlay"><i class="icon icon-doc"></i></span></figure>
+									<div class="blog-excerpt">
+										<div class="blog-excerpt-inner">
+											<h5 class="meta-post">Interior design</h5>
+											<h2>A confortable desk</h2>
+										</div><!-- blog-excerpt -->
+									</div><!-- blog-excerpt-inner -->	
+								</a>
+							</article>		
+							<article class="item column three">
+								<a href="#">
+									<figure><img src="http://placehold.it/800x600/ddd/fff&text=Beetle%20image" alt=""><span class="blog-overlay"><i class="icon icon-doc"></i></span></figure>
+									<div class="blog-excerpt">
+										<div class="blog-excerpt-inner">
+											<h5 class="meta-post">Relax, Hobbies</h5>
+											<h2>How I spend my time</h2>
+											<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+										</div><!-- blog-excerpt-inner -->		
+									</div><!-- blog-excerpt -->								
+								</a>
+							</article>											
+							<article class="item column three">
+								<a href="#">
+									<figure><img src="http://placehold.it/800x600/ddd/fff&text=Beetle%20image" alt=""><span class="blog-overlay"><i class="icon icon-doc"></i></span></figure>
+									<div class="blog-excerpt">
+										<div class="blog-excerpt-inner">
+											<h5 class="meta-post">Holidays</h5>
+											<h2>Snow &amp; silence</h2>
+											<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+										</div><!-- blog-excerpt -->	
+									</div><!-- blog-excerpt-inner -->
+								</a>
+							</article>
+							<article class="item column three">
+								<a href="#">
+									<figure><img src="http://placehold.it/800x600/ddd/fff&text=Beetle%20image" alt=""><span class="blog-overlay"><i class="icon icon-doc"></i></span></figure>
+									<div class="blog-excerpt">
+										<div class="blog-excerpt-inner">
+											<h5 class="meta-post">Music, Headphones</h5>
+											<h2>5 Hi-Fi headphones</h2>
+											<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+										</div><!-- blog-excerpt -->	
+									</div><!-- blog-excerpt-inner -->							
+								</a>
+							</article>	
+							<article class="item column three">
+								<a href="#">
+									<figure><img src="http://placehold.it/800x600/ddd/fff&text=Beetle%20image" alt=""><span class="blog-overlay"><i class="icon icon-doc"></i></span></figure>
+									<div class="blog-excerpt">
+										<div class="blog-excerpt-inner">
+											<h5 class="meta-post">Web Design</h5>
+											<h2>Build awesome layouts</h2>
+											<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+										</div><!-- blog-excerpt -->	
+									</div><!-- blog-excerpt-inner -->							
+								</a>
+							</article>	
+							<article class="item column six">
+								<a href="#">
+									<figure><img src="http://placehold.it/800x600/ddd/fff&text=Beetle%20image" alt=""><span class="blog-overlay"><i class="icon icon-doc"></i></span></figure>
+									<div class="blog-excerpt">
+										<div class="blog-excerpt-inner">
+											<h5 class="meta-post">Photography, Instagram</h5>
+											<h2>We are all made of stars</h2>
+										</div><!-- blog-excerpt -->	
+									</div><!-- blog-excerpt-inner -->							
+								</a>
+							</article>																		
+							<div class="shuffle-sizer three"></div>
+						</div><!-- grid-items -->
+						<div class="more-btn"><a class="button transparent aqua" href="#">Read all News</a></div>						
+					</div>	
+				</section>	
+
+				<section class="row section text-light" style="background-color:#cec8bc">
+					<div class="row-content buffer even clear-after">
+						<div class="column six push-six last-special">
+						
+						</div>						
+						<div class="side-mockup left-mockup animation">
+							<div class="slider iphone-slider white" data-autoplay="3000">
+								<figure>
+									<div><img src="http://placehold.it/640x1136/ddd/fff&text=Beetle%20image" alt=""></div>
+									<div><img src="http://placehold.it/640x1136/ddd/fff&text=Beetle%20image" alt=""></div>
+									<div><img src="http://placehold.it/640x1136/ddd/fff&text=Beetle%20image" alt=""></div>
+									<div><img src="http://placehold.it/640x1136/ddd/fff&text=Beetle%20image" alt=""></div>
+									<div><img src="http://placehold.it/640x1136/ddd/fff&text=Beetle%20image" alt=""></div>
+									<div><img src="http://placehold.it/640x1136/ddd/fff&text=Beetle%20image" alt=""></div>
+								</figure>
+							</div>
+						</div>						
+					</div>	
+				</section>										
+
+				<section class="row section">
+					<div class="row-content buffer even clear-after">
+						<div class="section-title"><h3>Skills</h3></div>
+						<p class="centertxt">I’m an experienced and passionate user interface designer with interaction design background.<br>My goal is to make the world wide web a better place by designing beautiful user experiences, one site at a time.</p>
+						<div class="chart" data-percent="73" data-bar-color="#fd685b" data-animate="2000">
+							<div class="chart-content">
+								<div class="percent"></div>
+								<div class="chart-title">User Interface</div>
+							</div><!-- chart-content -->
+						</div><!-- chart -->
+						<div class="chart" data-percent="85" data-bar-color="#ffce54" data-animate="2500">
+							<div class="chart-content">
+								<div class="percent"></div>
+								<div class="chart-title">Front-end</div>
+							</div><!-- chart-content -->
+						</div><!-- chart -->
+						<div class="chart" data-percent="70" data-bar-color="#a0d468" data-animate="3000">
+							<div class="chart-content">
+								<div class="percent"></div>
+								<div class="chart-title">User Experience</div>
+							</div><!-- chart-content -->
+						</div><!-- chart -->
+						<div class="chart" data-percent="95" data-bar-color="#ac92ec" data-animate="3500">
+							<div class="chart-content">
+								<div class="percent"></div>
+								<div class="chart-title">Icon Design</div>
+							</div><!-- chart-content -->
+						</div><!-- chart -->
+					</div>	
+				</section>	
+
+				<section class="row section text-light" style="background-color:#4FC1E9;">
+					<div class="row-content buffer even clear-after">
+						<div class="testimonial-slider centertxt" data-autoplay="5000" data-pagination="true" data-transition="fade" data-autoheight="false">
+							<div class="quote">
+								<p>"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."</p>
+								<div class="author">John Lennon</div>
+							</div><!-- quote -->
+							<div class="quote">
+								<p>"Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum'.."</p>
+								<div class="author">Fabrizio De Andr&egrave;</div>
+							</div><!-- quote -->		
+							<div class="quote">
+								<p>"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration."</p>
+								<div class="author">B.B. King</div>
+							</div><!-- quote -->							
+						</div><!-- testimonial-slider -->				
+					</div>
+				</section>						
+
+				<section class="row section">
+					<div class="row-content buffer even clear-after">
+						<div class="column three">
+							<div class="count-item">
+								<div class="small-icon red"><i class="icon icon-leaf"></i></div>
+								<div class="count-number" data-from="0" data-to="1284" data-speed="1000" data-refresh-interval="25"></div>
+								<div class="count-subject">Active projects</div>
+							</div><!-- count-item -->
+						</div>
+						<div class="column three">
+							<div class="count-item">
+								<div class="small-icon red"><i class="icon icon-heart"></i></div>
+								<div class="count-number" data-from="0" data-to="28903" data-speed="1500" data-refresh-interval="25"></div>
+								<div class="count-subject">Users who love them</div>
+							</div><!-- count-item -->
+						</div>
+						<div class="column three">
+							<div class="count-item">
+								<div class="small-icon red"><i class="icon icon-tshirt"></i></div>
+								<div class="count-number" data-from="0" data-to="326" data-speed="2000" data-refresh-interval="25"></div>
+								<div class="count-subject">T-Shirts &amp; Gadgets</div>
+							</div><!-- count-item -->
+						</div>
+						<div class="column three last">
+							<div class="count-item">
+								<div class="small-icon red"><i class="icon icon-graph"></i></div>
+								<div class="count-number" data-from="0" data-to="58802" data-speed="2500" data-refresh-interval="25"></div>
+								<div class="count-subject">Everyday visitors</div>
+							</div><!-- count-item -->
+						</div>
+					</div>	
+				</section>
+
+				<section class="row section text-light" style="background-color:#FF8CB9">
+					<div class="row-content buffer even clear-after">
+						<div class="section-title"><h3>Frankie's Dribbble Shots</h3></div>
+						<div class="dribbble-items portfolio-section preload" data-username="frankiefreesbie" data-elements="4">
+						</div><!-- dribbble-items -->
+						<div class="more-btn"><a class="button transparent white" href="http://dribbble.com/frankiefreesbie">View all Shots</a></div>						
+					</div>	
+				</section>	
+
+				<section class="row section call-to-action">
+					<div class="row-content buffer even animation">
+						<p>Have you fallen in love with Beetle?</p>
+						<a class="button red" href="#">Buy it now!</a>
+					</div>
+				</section>								
+
+				<section class="row section">
+					<div class="map" data-maplat="51.511214" data-maplon="-0.119824" data-mapzoom="15" data-color="" data-height="22.222" data-img="img/marker.png" data-info="I am based in London, UK"></div>
+				</section>									
+
+			</div><!-- id-main -->
+		</main><!-- main -->
+
+		<footer role="contentinfo">
+			<div class="row">
+				<div class="row-content buffer clear-after">
+					<section id="top-footer">
+						<div class="widget column three"><!-- la class="widget" è forse generata utomaticamente da wp -->
+							<h4>Menu</h4>
+							<ul class="plain">
+								<li><a href="home-01.html">Home</a></li>
+								<li><a href="works-3-columns.html">Portfolio</a></li>
+								<li><a href="blog-4-columns-masonry.html">Blog</a></li>
+								<li><a href="resume.html">Resume</a></li>
+								<li><a href="file:///Users/pasqualevitiello/My%20Folder/Job/Envato/PR%20Themeforest/Flattie/Markup/Beetle/contact.html">Contact</a></li>
+							</ul>
+						</div>
+						<div class="widget column three">
+							<h4>Archives</h4>
+							<ul class="plain">
+								<li><a href="#">March 2014</a></li>
+								<li><a href="#">April 2014</a></li>
+								<li><a href="#">May 2014</a></li>
+								<li><a href="#">June 2014</a></li>
+								<li><a href="#">July 2014</a></li>
+							</ul>
+						</div>								
+						<div class="widget column three">
+							<h4>Widget</h4>
+							<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+						</div>				
+						<div class="widget meta-social column three">
+							<h4>Follow Us</h4>
+							<ul class="inline">
+								<li><a href="#" class="twitter-share border-box"><i class="fa fa-twitter fa-lg"></i></a></li>
+								<li><a href="#" class="facebook-share border-box"><i class="fa fa-facebook fa-lg"></i></a></li>
+								<li><a href="#" class="pinterest-share border-box"><i class="fa fa-pinterest fa-lg"></i></a></li>
+							</ul>
+						</div>														
+					</section><!-- top-footer -->
+					<section id="bottom-footer">
+						<p class="keep-left">&copy; 2014 <a href="http://mokaine.com/" alt="Mokaine Lab">Mokaine</a>. All Rights Reserved.</p>
+						<p class="keep-right">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+					</section><!-- bottom-footer -->			
+				</div><!-- row-content -->	
+			</div><!-- row -->	
+		</footer>
+
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>		
+		<script src="../static/elsa-fresh/js/plugins.js"></script>
+		<script src="../static/elsa-fresh/js/beetle.js"></script>
+
+	</body>
 
-    <header id="header">
-        <div class="top-bar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-xs-4">
-                        <div class="top-number"><p><i class="fa fa-phone-square"></i>  +0123 456 70 90</p></div>
-                    </div>
-                    <div class="col-sm-6 col-xs-8">
-                       <div class="social">
-                            <ul class="social-share">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li> 
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                            </ul>
-                            <div class="search">
-                                <form role="form">
-                                    <input type="text" class="search-form" autocomplete="off" placeholder="Search">
-                                    <i class="fa fa-search"></i>
-                                </form>
-                           </div>
-                       </div>
-                    </div>
-                </div>
-            </div><!--/.container-->
-        </div><!--/.top-bar-->
-
-        <nav class="navbar navbar-inverse" role="banner">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.html"><img src="static/images/logo.png" alt="logo"></a>
-                </div>
-				
-                <div class="collapse navbar-collapse navbar-right">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="about-us.html">About Us</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="{{ url_for('signin') }}">Sign In</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="blog-item.html">Blog Single</a></li>
-                                <li><a href="pricing.html">Pricing</a></li>
-                                <li><a href="404.html">404</a></li>
-                                <li><a href="shortcodes.html">Shortcodes</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="blog.html">Blog</a></li> 
-                        <li><a href="contact-us.html">Contact</a></li> 
-                        <li>
-                          <a href="{{ url_for('signup') }}">Sign Up</a>
-                        </li>             
-                    </ul>
-                </div>
-            </div><!--/.container-->
-        </nav><!--/nav-->
-		
-    </header><!--/header-->
-
-    <section id="main-slider" class="no-margin">
-        <div class="carousel slide">
-            <ol class="carousel-indicators">
-                <li data-target="#main-slider" data-slide-to="0" class="active"></li>
-                <li data-target="#main-slider" data-slide-to="1"></li>
-                <li data-target="#main-slider" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-
-                <div class="item active" style="background-image: url(static/images/slider/bg1.jpg)">
-                    <div class="container">
-                        <div class="row slide-margin">
-                            <div class="col-sm-6">
-                                <div class="carousel-content">
-                                    <h1 class="animation animated-item-1">Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
-                                    <h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
-                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 hidden-xs animation animated-item-4">
-                                <div class="slider-img">
-                                    <img src="static/images/slider/img1.png" class="img-responsive">
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div><!--/.item-->
-
-                <div class="item" style="background-image: url(static/images/slider/bg2.jpg)">
-                    <div class="container">
-                        <div class="row slide-margin">
-                            <div class="col-sm-6">
-                                <div class="carousel-content">
-                                    <h1 class="animation animated-item-1">Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
-                                    <h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
-                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 hidden-xs animation animated-item-4">
-                                <div class="slider-img">
-                                    <img src="static/images/slider/img2.png" class="img-responsive">
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div><!--/.item-->
-
-                <div class="item" style="background-image: url(static/images/slider/bg3.jpg)">
-                    <div class="container">
-                        <div class="row slide-margin">
-                            <div class="col-sm-6">
-                                <div class="carousel-content">
-                                    <h1 class="animation animated-item-1">Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
-                                    <h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
-                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 hidden-xs animation animated-item-4">
-                                <div class="slider-img">
-                                    <img src="static/images/slider/img3.png" class="img-responsive">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><!--/.item-->
-            </div><!--/.carousel-inner-->
-        </div><!--/.carousel-->
-        <a class="prev hidden-xs" href="#main-slider" data-slide="prev">
-            <i class="fa fa-chevron-left"></i>
-        </a>
-        <a class="next hidden-xs" href="#main-slider" data-slide="next">
-            <i class="fa fa-chevron-right"></i>
-        </a>
-    </section><!--/#main-slider-->
-
-    <section id="feature" >
-        <div class="container">
-           <div class="center wow fadeInDown">
-                <h2>Features</h2>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
-            </div>
-
-            <div class="row">
-                <div class="features">
-                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-                        <div class="feature-wrap">
-                            <i class="fa fa-bullhorn"></i>
-                            <h2>Fresh and Clean</h2>
-                            <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h3>
-                        </div>
-                    </div><!--/.col-md-4-->
-
-                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-                        <div class="feature-wrap">
-                            <i class="fa fa-comments"></i>
-                            <h2>Retina ready</h2>
-                            <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h3>
-                        </div>
-                    </div><!--/.col-md-4-->
-
-                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-                        <div class="feature-wrap">
-                            <i class="fa fa-cloud-download"></i>
-                            <h2>Easy to customize</h2>
-                            <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h3>
-                        </div>
-                    </div><!--/.col-md-4-->
-                
-                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-                        <div class="feature-wrap">
-                            <i class="fa fa-leaf"></i>
-                            <h2>Adipisicing elit</h2>
-                            <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h3>
-                        </div>
-                    </div><!--/.col-md-4-->
-
-                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-                        <div class="feature-wrap">
-                            <i class="fa fa-cogs"></i>
-                            <h2>Sed do eiusmod</h2>
-                            <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h3>
-                        </div>
-                    </div><!--/.col-md-4-->
-
-                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-                        <div class="feature-wrap">
-                            <i class="fa fa-heart"></i>
-                            <h2>Labore et dolore</h2>
-                            <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h3>
-                        </div>
-                    </div><!--/.col-md-4-->
-                </div><!--/.services-->
-            </div><!--/.row-->    
-        </div><!--/.container-->
-    </section><!--/#feature-->
-
-    <section id="recent-works">
-        <div class="container">
-            <div class="center wow fadeInDown">
-                <h2>Recent Works</h2>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
-            </div>
-
-            <div class="row">
-                <div class="col-xs-12 col-sm-4 col-md-3">
-                    <div class="recent-work-wrap">
-                        <img class="img-responsive" src="static/images/portfolio/recent/item1.png" alt="">
-                        <div class="overlay">
-                            <div class="recent-work-inner">
-                                <h3><a href="#">Business theme</a> </h3>
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                <a class="preview" href="images/portfolio/full/item1.png" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                            </div> 
-                        </div>
-                    </div>
-                </div>   
-
-                <div class="col-xs-12 col-sm-4 col-md-3">
-                    <div class="recent-work-wrap">
-                        <img class="img-responsive" src="static/images/portfolio/recent/item2.png" alt="">
-                        <div class="overlay">
-                            <div class="recent-work-inner">
-                                <h3><a href="#">Business theme</a></h3>
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                <a class="preview" href="images/portfolio/full/item2.png" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                            </div> 
-                        </div>
-                    </div>
-                </div> 
-
-                <div class="col-xs-12 col-sm-4 col-md-3">
-                    <div class="recent-work-wrap">
-                        <img class="img-responsive" src="static/images/portfolio/recent/item3.png" alt="">
-                        <div class="overlay">
-                            <div class="recent-work-inner">
-                                <h3><a href="#">Business theme </a></h3>
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                <a class="preview" href="images/portfolio/full/item3.png" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                            </div> 
-                        </div>
-                    </div>
-                </div>   
-
-                <div class="col-xs-12 col-sm-4 col-md-3">
-                    <div class="recent-work-wrap">
-                        <img class="img-responsive" src="static/images/portfolio/recent/item4.png" alt="">
-                        <div class="overlay">
-                            <div class="recent-work-inner">
-                                <h3><a href="#">Business theme </a></h3>
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                <a class="preview" href="images/portfolio/full/item4.png" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                            </div> 
-                        </div>
-                    </div>
-                </div>   
-                
-                <div class="col-xs-12 col-sm-4 col-md-3">
-                    <div class="recent-work-wrap">
-                        <img class="img-responsive" src="static/images/portfolio/recent/item5.png" alt="">
-                        <div class="overlay">
-                            <div class="recent-work-inner">
-                                <h3><a href="#">Business theme</a></h3>
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                <a class="preview" href="images/portfolio/full/item5.png" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                            </div> 
-                        </div>
-                    </div>
-                </div>   
-
-                <div class="col-xs-12 col-sm-4 col-md-3">
-                    <div class="recent-work-wrap">
-                        <img class="img-responsive" src="static/images/portfolio/recent/item6.png" alt="">
-                        <div class="overlay">
-                            <div class="recent-work-inner">
-                                <h3><a href="#">Business theme </a></h3>
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                <a class="preview" href="images/portfolio/full/item6.png" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                            </div> 
-                        </div>
-                    </div>
-                </div> 
-
-                <div class="col-xs-12 col-sm-4 col-md-3">
-                    <div class="recent-work-wrap">
-                        <img class="img-responsive" src="static/images/portfolio/recent/item7.png" alt="">
-                        <div class="overlay">
-                            <div class="recent-work-inner">
-                                <h3><a href="#">Business theme </a></h3>
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                <a class="preview" href="images/portfolio/full/item7.png" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                            </div> 
-                        </div>
-                    </div>
-                </div>   
-
-                <div class="col-xs-12 col-sm-4 col-md-3">
-                    <div class="recent-work-wrap">
-                        <img class="img-responsive" src="static/images/portfolio/recent/item8.png" alt="">
-                        <div class="overlay">
-                            <div class="recent-work-inner">
-                                <h3><a href="#">Business theme </a></h3>
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                <a class="preview" href="images/portfolio/full/item8.png" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                            </div> 
-                        </div>
-                    </div>
-                </div>   
-            </div><!--/.row-->
-        </div><!--/.container-->
-    </section><!--/#recent-works-->
-
-    <section id="services" class="service-item">
-	   <div class="container">
-            <div class="center wow fadeInDown">
-                <h2>Our Service</h2>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
-            </div>
-
-            <div class="row">
-
-                <div class="col-sm-6 col-md-4">
-                    <div class="media services-wrap wow fadeInDown">
-                        <div class="pull-left">
-                            <img class="img-responsive" src="static/images/services/services1.png">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="media-heading">SEO Marketing</h3>
-                            <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4">
-                    <div class="media services-wrap wow fadeInDown">
-                        <div class="pull-left">
-                            <img class="img-responsive" src="static/images/services/services2.png">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="media-heading">SEO Marketing</h3>
-                            <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4">
-                    <div class="media services-wrap wow fadeInDown">
-                        <div class="pull-left">
-                            <img class="img-responsive" src="static/images/services/services3.png">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="media-heading">SEO Marketing</h3>
-                            <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>
-                        </div>
-                    </div>
-                </div>  
-
-                <div class="col-sm-6 col-md-4">
-                    <div class="media services-wrap wow fadeInDown">
-                        <div class="pull-left">
-                            <img class="img-responsive" src="images/services/services4.png">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="media-heading">SEO Marketing</h3>
-                            <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4">
-                    <div class="media services-wrap wow fadeInDown">
-                        <div class="pull-left">
-                            <img class="img-responsive" src="static/images/services/services5.png">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="media-heading">SEO Marketing</h3>
-                            <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4">
-                    <div class="media services-wrap wow fadeInDown">
-                        <div class="pull-left">
-                            <img class="img-responsive" src="static/images/services/services6.png">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="media-heading">SEO Marketing</h3>
-                            <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>
-                        </div>
-                    </div>
-                </div>                                                
-            </div><!--/.row-->
-        </div><!--/.container-->
-    </section><!--/#services-->
-
-    <section id="middle">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 wow fadeInDown">
-                    <div class="skill">
-                        <h2>Our Skills</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
-                        <div class="progress-wrap">
-                            <h3>Graphic Design</h3>
-                            <div class="progress">
-                              <div class="progress-bar  color1" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 85%">
-                                <span class="bar-width">85%</span>
-                              </div>
-
-                            </div>
-                        </div>
-
-                        <div class="progress-wrap">
-                            <h3>HTML</h3>
-                            <div class="progress">
-                              <div class="progress-bar color2" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 95%">
-                               <span class="bar-width">95%</span>
-                              </div>
-                            </div>
-                        </div>
-
-                        <div class="progress-wrap">
-                            <h3>CSS</h3>
-                            <div class="progress">
-                              <div class="progress-bar color3" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                <span class="bar-width">80%</span>
-                              </div>
-                            </div>
-                        </div>
-
-                        <div class="progress-wrap">
-                            <h3>Wordpress</h3>
-                            <div class="progress">
-                              <div class="progress-bar color4" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
-                                <span class="bar-width">90%</span>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div><!--/.col-sm-6-->
-
-                <div class="col-sm-6 wow fadeInDown">
-                    <div class="accordion">
-                        <h2>Why People like us?</h2>
-                        <div class="panel-group" id="accordion1">
-                          <div class="panel panel-default">
-                            <div class="panel-heading active">
-                              <h3 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1">
-                                  Lorem ipsum dolor sit amet
-                                  <i class="fa fa-angle-right pull-right"></i>
-                                </a>
-                              </h3>
-                            </div>
-
-                            <div id="collapseOne1" class="panel-collapse collapse in">
-                              <div class="panel-body">
-                                  <div class="media accordion-inner">
-                                        <div class="pull-left">
-                                            <img class="img-responsive" src="static/images/accordion1.png">
-                                        </div>
-                                        <div class="media-body">
-                                             <h4>Adipisicing elit</h4>
-                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore</p>
-                                        </div>
-                                  </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="panel panel-default">
-                            <div class="panel-heading">
-                              <h3 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1">
-                                  Lorem ipsum dolor sit amet
-                                  <i class="fa fa-angle-right pull-right"></i>
-                                </a>
-                              </h3>
-                            </div>
-                            <div id="collapseTwo1" class="panel-collapse collapse">
-                              <div class="panel-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor.
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="panel panel-default">
-                            <div class="panel-heading">
-                              <h3 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree1">
-                                  Lorem ipsum dolor sit amet
-                                  <i class="fa fa-angle-right pull-right"></i>
-                                </a>
-                              </h3>
-                            </div>
-                            <div id="collapseThree1" class="panel-collapse collapse">
-                              <div class="panel-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor.
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="panel panel-default">
-                            <div class="panel-heading">
-                              <h3 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseFour1">
-                                  Lorem ipsum dolor sit amet
-                                  <i class="fa fa-angle-right pull-right"></i>
-                                </a>
-                              </h3>
-                            </div>
-                            <div id="collapseFour1" class="panel-collapse collapse">
-                              <div class="panel-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor.
-                              </div>
-                            </div>
-                          </div>
-                        </div><!--/#accordion1-->
-                    </div>
-                </div>
-
-            </div><!--/.row-->
-        </div><!--/.container-->
-    </section><!--/#middle-->
-
-    <section id="content">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-8 wow fadeInDown">
-                   <div class="tab-wrap"> 
-                        <div class="media">
-                            <div class="parrent pull-left">
-                                <ul class="nav nav-tabs nav-stacked">
-                                    <li class=""><a href="#tab1" data-toggle="tab" class="analistic-01">Responsive Web Design</a></li>
-                                    <li class="active"><a href="#tab2" data-toggle="tab" class="analistic-02">Premium Plugin Included</a></li>
-                                    <li class=""><a href="#tab3" data-toggle="tab" class="tehnical">Predefine Layout</a></li>
-                                    <li class=""><a href="#tab4" data-toggle="tab" class="tehnical">Our Philosopy</a></li>
-                                    <li class=""><a href="#tab5" data-toggle="tab" class="tehnical">What We Do?</a></li>
-                                </ul>
-                            </div>
-
-                            <div class="parrent media-body">
-                                <div class="tab-content">
-                                    <div class="tab-pane fade" id="tab1">
-                                        <div class="media">
-                                           <div class="pull-left">
-                                                <img class="img-responsive" src="static/images/tab2.png">
-                                            </div>
-                                            <div class="media-body">
-                                                 <h2>Adipisicing elit</h2>
-                                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                     <div class="tab-pane fade active in" id="tab2">
-                                        <div class="media">
-                                           <div class="pull-left">
-                                                <img class="img-responsive" src="static/images/tab1.png">
-                                            </div>
-                                            <div class="media-body">
-                                                 <h2>Adipisicing elit</h2>
-                                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use.
-                                                 </p>
-                                            </div>
-                                        </div>
-                                     </div>
-
-                                     <div class="tab-pane fade" id="tab3">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</p>
-                                     </div>
-                                     
-                                     <div class="tab-pane fade" id="tab4">
-                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words</p>
-                                     </div>
-
-                                     <div class="tab-pane fade" id="tab5">
-                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures,</p>
-                                     </div>
-                                </div> <!--/.tab-content-->  
-                            </div> <!--/.media-body--> 
-                        </div> <!--/.media-->     
-                    </div><!--/.tab-wrap-->               
-                </div><!--/.col-sm-6-->
-
-                <div class="col-xs-12 col-sm-4 wow fadeInDown">
-                    <div class="testimonial">
-                        <h2>Testimonials</h2>
-                         <div class="media testimonial-inner">
-                            <div class="pull-left">
-                                <img class="img-responsive img-circle" src="static/images/testimonials1.png">
-                            </div>
-                            <div class="media-body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</p>
-                                <span><strong>-John Doe/</strong> Director of corlate.com</span>
-                            </div>
-                         </div>
-
-                         <div class="media testimonial-inner">
-                            <div class="pull-left">
-                                <img class="img-responsive img-circle" src="static/images/testimonials1.png">
-                            </div>
-                            <div class="media-body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</p>
-                                <span><strong>-John Doe/</strong> Director of corlate.com</span>
-                            </div>
-                         </div>
-
-                    </div>
-                </div>
-
-            </div><!--/.row-->
-        </div><!--/.container-->
-    </section><!--/#content-->
-
-    <section id="partner">
-        <div class="container">
-            <div class="center wow fadeInDown">
-                <h2>Our Partners</h2>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
-            </div>    
-
-            <div class="partners">
-                <ul>
-                    <li> <a href="#"><img class="img-responsive wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms" src="images/partners/partner1.png"></a></li>
-                    <li> <a href="#"><img class="img-responsive wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms" src="images/partners/partner2.png"></a></li>
-                    <li> <a href="#"><img class="img-responsive wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms" src="images/partners/partner3.png"></a></li>
-                    <li> <a href="#"><img class="img-responsive wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="1200ms" src="images/partners/partner4.png"></a></li>
-                    <li> <a href="#"><img class="img-responsive wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="1500ms" src="images/partners/partner5.png"></a></li>
-                </ul>
-            </div>        
-        </div><!--/.container-->
-    </section><!--/#partner-->
-
-    <section id="conatcat-info">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-8">
-                    <div class="media contact-info wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-                        <div class="pull-left">
-                            <i class="fa fa-phone"></i>
-                        </div>
-                        <div class="media-body">
-                            <h2>Have a question or need a custom quote?</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation +0123 456 70 80</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!--/.container-->    
-    </section><!--/#conatcat-info-->
-
-    <section id="bottom">
-        <div class="container wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-            <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="widget">
-                        <h3>Company</h3>
-                        <ul>
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">We are hiring</a></li>
-                            <li><a href="#">Meet the team</a></li>
-                            <li><a href="#">Copyright</a></li>
-                            <li><a href="#">Terms of use</a></li>
-                            <li><a href="#">Privacy policy</a></li>
-                            <li><a href="#">Contact us</a></li>
-                        </ul>
-                    </div>    
-                </div><!--/.col-md-3-->
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="widget">
-                        <h3>Support</h3>
-                        <ul>
-                            <li><a href="#">Faq</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Forum</a></li>
-                            <li><a href="#">Documentation</a></li>
-                            <li><a href="#">Refund policy</a></li>
-                            <li><a href="#">Ticket system</a></li>
-                            <li><a href="#">Billing system</a></li>
-                        </ul>
-                    </div>    
-                </div><!--/.col-md-3-->
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="widget">
-                        <h3>Developers</h3>
-                        <ul>
-                            <li><a href="#">Web Development</a></li>
-                            <li><a href="#">SEO Marketing</a></li>
-                            <li><a href="#">Theme</a></li>
-                            <li><a href="#">Development</a></li>
-                            <li><a href="#">Email Marketing</a></li>
-                            <li><a href="#">Plugin Development</a></li>
-                            <li><a href="#">Article Writing</a></li>
-                        </ul>
-                    </div>    
-                </div><!--/.col-md-3-->
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="widget">
-                        <h3>Our Partners</h3>
-                        <ul>
-                            <li><a href="#">Adipisicing Elit</a></li>
-                            <li><a href="#">Eiusmod</a></li>
-                            <li><a href="#">Tempor</a></li>
-                            <li><a href="#">Veniam</a></li>
-                            <li><a href="#">Exercitation</a></li>
-                            <li><a href="#">Ullamco</a></li>
-                            <li><a href="#">Laboris</a></li>
-                        </ul>
-                    </div>    
-                </div><!--/.col-md-3-->
-            </div>
-        </div>
-    </section><!--/#bottom-->
-
-    <footer id="footer" class="midnight-blue">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    &copy; 2013 <a target="_blank" href="http://shapebootstrap.net/" title="Free Twitter Bootstrap WordPress Themes and HTML templates">ShapeBootstrap</a>. All Rights Reserved.
-                </div>
-                <div class="col-sm-6">
-                    <ul class="pull-right">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Faq</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer><!--/#footer-->
-
-    <script src="static/js/jquery.js"></script>
-    <script src="static/js/bootstrap.min.js"></script>
-    <script src="static/js/jquery.prettyPhoto.js"></script>
-    <script src="static/js/jquery.isotope.min.js"></script>
-    <script src="static/js/main.js"></script>
-    <script src="static/js/wow.min.js"></script>
-</body>
 </html>
