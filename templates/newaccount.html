@@ -2,15 +2,16 @@
 
 {% block body %}
 
-    <section id="contact-page">
-        <div class="container">
-            <div class="center">        
-                <h2>Thanks for Signing Up!</h2>
-                <p class="lead">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div> 
-            <div class="row contact-wrap"> 
+        <section class="row section">
+        <div class="row-content buffer even clear-after">
+        <div class="section-title">
+        <h2>Thanks for Signing Up!</h2>
+        	<p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>	
+					
+            <div class="column six buffer-left">    
+              
                 <form id="new-user-form" class="contact-form" name="contact-form" method="post" action="{{ url_for('register') }}">
-                    <div class="col-sm-5 col-sm-offset-1">
                         <div class="form-group">
                             <label>Name *</label>
                             <input type="text" name="name" class="form-control" required="required">
@@ -28,7 +29,7 @@
                             <input type="password" class="form-control" required="required">
                         </div>                        
                     </div>
-                    <div class="col-sm-5">
+						<div class="column five">
                         <div class="form-group">
                             <label>Professional Tagline *</label>
                             <input type="text" name="tagline" class="form-control" required="required">

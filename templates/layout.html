@@ -5,20 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>JOBAB</title>
+    <title>Project Elsa</title>
     
     <!-- core CSS -->
-    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/prettyPhoto.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/animate.min.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet">
-    
+
+	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet"> 
+	<link href="{{ url_for('static', filename='css/layers.min.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet">
+
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
+
     <!--[if lt IE 9]>
     <script src="{{ url_for('static', filename='js/html5shiv.js') }}"></script>
     <script src="{{ url_for('static', filename='js/respond.min.js') }}"></script>
     <![endif]-->       
+    
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/ico/favicon.ico') }}">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ url_for('static', filename='images/ico/apple-touch-icon-144-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ url_for('static', filename='images/ico/apple-touch-icon-114-precomposed.png') }}">
@@ -26,50 +28,18 @@
     <link rel="apple-touch-icon-precomposed" href="{{ url_for('static', filename='images/ico/apple-touch-icon-57-precomposed.png') }}">
 </head><!--/head-->
 
-<body>
+	<body class="page">
 
-    <header id="header">
-        <div class="top-bar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-xs-4">
-                        <div class="top-number"><p><i class="fa fa-phone-square"></i>  +0123 456 70 90</p></div>
-                    </div>
-                    <div class="col-sm-6 col-xs-8">
-                       <div class="social">
-                            <ul class="social-share">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li> 
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                            </ul>
-                            <div class="search">
-                                <form role="form">
-                                    <input type="text" class="search-form" autocomplete="off" placeholder="Search">
-                                    <i class="fa fa-search"></i>
-                                </form>
-                           </div>
-                       </div>
-                    </div>
-                </div>
-            </div><!--/.container-->
-        </div><!--/.top-bar-->
-
-        <nav class="navbar navbar-inverse" role="banner">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.html"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo"></a>
-                </div>
-                
-                <div class="collapse navbar-collapse navbar-right">
-                    <ul class="nav navbar-nav">
+		<header role="banner" class="transparent light">
+			<div class="row">
+				<div class="nav-inner row-content buffer-right even clear-after">
+					<div id="brand">
+						<h1 class="reset"><!--<img src="img/logo.png" alt="logo">--><a href="{{ url_for('home') }}">Project Elsa</a></h1>
+					</div><!-- brand -->
+					<a id="menu-toggle" href="#"><i class="fa fa-bars fa-lg"></i></a>
+					<nav>
+						<ul class="reset" role="navigation">
+							
                         <li><a href="{{ url_for('home') }}">Home</a></li>
                         {% if role %}
                             {% if role.is_recruiter == 1 %}
@@ -85,57 +55,98 @@
                             <li><a href="{{ url_for('logout')}}">Logout</a></li>
                         {% else %}
                         {% endif %}
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="blog-item.html">Blog Single</a></li>
-                                <li><a href="pricing.html">Pricing</a></li>
-                                <li><a href="404.html">404</a></li>
-                                <li><a href="shortcodes.html">Shortcodes</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div><!--/.container-->
-        </nav><!--/nav-->
-    </header><!--/header-->
+                       
+						</ul>
+					</nav>
+				</div><!-- row-content -->	
+			</div><!-- row -->	
+		</header>
+    	
 
-    {% for message in get_flashed_messages() %}
-      <div class="bs-example" style="margin-top: 50px;">
-        <div class="alert alert-block alert-info fade in">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <h4>{{ message }}</h4>
-        </div>
-      </div><!-- /example -->
-    {% endfor %}
+		<main role="main">
+			<div id="intro-wrap">
+				<div id="intro" class="preload darken" data-autoplay="5000" data-navigation="true" data-pagination="true" data-transition="fadeUp">					
+					<div class="intro-item" style="background-image: url(https://unsplash.imgix.net/photo-1416512107527-34cebecbac33?q=75&w=1080&h=1080&fit=max&fm=jpg&s=bf51f6e2da67e1c777e7f71ac58da3c2);">
+						<div class="caption">
+							<h2>Project Elsa</h2>
+						</div><!-- caption -->
+					</div>									
+					<div class="intro-item" style="background-image: url(https://ununsplash.imgix.net/uploads/1413399939678471ea070/2c0343f7?dpr=2&fit=crop&fm=jpg&h=725&q=75&w=1050);">
+						<div class="caption">
+							<h2>Project Elsa</h2>
+						</div>	
+					</div>					
+					<div class="intro-item" style="background-image: url(https://unsplash.imgix.net/reserve/UJO0jYLtRte4qpyA37Xu_9X6A7388.jpg?dpr=2&fit=crop&fm=jpg&h=700&q=75&w=1050);">
+						<div class="caption">
+							<h2>Project Elsa</h2>	
+						</div>	
+					</div>	
+					<div class="intro-item" style="background-image: url(https://unsplash.imgix.net/uploads/14131528928453585b6dc/829d24cf?dpr=2&fit=crop&fm=jpg&h=700&q=75&w=1050);">
+						<div class="caption">
+							<h2>Project Elsa</h2>
+						</div>																		
+					</div><!-- intro -->
+				</div><!-- intro-wrap -->
+			</div>
+			
+				{% for message in get_flashed_messages() %}
+							<div class="bs-example" style="margin-top: 50px;">
+							<div class="alert alert-block alert-info fade in">
+							  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+							  <h4>{{ message }}</h4>
+							</div>
+							</div><!-- /example -->
+				 {% endfor %}
+				 
+			<div id="main">
+				<section id="contact-info">
+				 {% block body %} {% endblock %}
+				</section>
+			</div>				
+		</main>
     
-<section id="contact-info">
- {% block body %} {% endblock %}
-</section>
+    <footer role="contentinfo">
+			<div class="row">
+				<div class="row-content buffer clear-after">
+					<section id="top-footer">
+						<div class="widget column three"><!-- la class="widget" è forse generata utomaticamente da wp -->
+							<h4>Menu</h4>
+							<ul class="plain">
+								<li><a href="{{ url_for('home') }}">Home</a></li>
+								
+							</ul>
+						</div>
+						<div class="widget column three">
+							<h4>Some Info Here</h4>
+							<ul class="plain">
+								
+							</ul>
+						</div>								
+						<div class="widget column three">
+							<h4>More Info Here</h4>
+							<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+						</div>				
+						<div class="widget meta-social column three">
+							<h4>Follow Us</h4>
+							<ul class="inline">
+								<li><a href="#" class="twitter-share border-box"><i class="fa fa-twitter fa-lg"></i></a></li>
+								<li><a href="#" class="facebook-share border-box"><i class="fa fa-facebook fa-lg"></i></a></li>
+								<li><a href="#" class="pinterest-share border-box"><i class="fa fa-pinterest fa-lg"></i></a></li>
+							</ul>
+						</div>														
+					</section><!-- top-footer -->
+					<section id="bottom-footer">
+						
+					</section><!-- bottom-footer -->			
+				</div><!-- row-content -->	
+			</div><!-- row -->	
+		</footer>
+		</body>
 
-    <footer id="footer" class="midnight-blue">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    &copy; 2013 <a target="_blank" href="http://shapebootstrap.net/" title="Free Twitter Bootstrap WordPress Themes and HTML templates">ShapeBootstrap</a>. All Rights Reserved.
-                </div>
-                <div class="col-sm-6">
-                    <ul class="pull-right">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Faq</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer><!--/#footer-->
-<!-- {{ url_for('static', filename='js/wow.min.js') }} -->
-    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/jquery.prettyPhoto.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/jquery.isotope.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+		<script src="../static/js/plugins.js"></script>
+		<script src="../static/js/beetle.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 </body>
 </html>
