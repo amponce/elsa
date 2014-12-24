@@ -1,424 +1,496 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />	
+	<title>Project Elsa</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<meta name="description" content="The Page Description">
-		<style type="text/css">@-ms-viewport{width: device-width;}</style>
-		<title>Project Elsa</title>
-		<link href="../static/css/style.css" rel="stylesheet">
-		<link href="../static/css/layers.min.css" rel="stylesheet">
-		<link href="../static/css/font-awesome.min.css" rel="stylesheet">
-  
-		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
-		<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-		<![endif]-->
-		<link rel="icon" href="favicon.ico">
-		<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="../static/images/apple-touch-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="../static/images/apple-touch-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="../static/images/apple-touch-icon-152x152.png">			
-	</head>
+	<!-- stylesheets -->
+	<link rel="stylesheet" type="text/css" href="../static/css/compiled/theme.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/vendor/animate.css">
 
-<body class="page">
+	<!-- javascript -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="../static/js/bootstrap/bootstrap.min.js"></script>
+	<script src="../static/js/theme.js"></script>
 
-		<header role="banner" class="transparent light">
+	<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body id="home4">
+	<header class="navbar navbar-inverse hero" role="banner">
+  		<div class="container">
+    		<div class="navbar-header">
+		      	<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+		      	</button>
+      			<a href="{{ url_for('home') }}" class="navbar-brand">Project Elsa</a>
+    		</div>
+    		<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      			<ul class="nav navbar-nav navbar-right">
+      				<li class="dropdown">
+        				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          					Home  <b class="caret"></b>
+          				</a>
+          				<ul class="dropdown-menu">
+				            <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+				        </ul>
+        			</li>
+        			<li class="dropdown">
+        				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          					Showcase <b class="caret"></b>
+          				</a>
+          				<ul class="dropdown-menu">
+							<li><a href="features.html">Features</a></li>
+							<li><a href="services.html">Services</a></li>
+				        </ul>
+        			</li>
+        			<li class="dropdown">
+          				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          					Pricing <b class="caret"></b>
+          				</a>
+          				<ul class="dropdown-menu">
+							<li><a href="pricing.html">Pricing charts</a></li>
+							<li><a href="charts.html">Comparison tables</a></li>
+				        </ul>
+        			</li>
+        			<li class="dropdown">
+        				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          					More pages <b class="caret"></b>
+          				</a>
+          				<ul class="dropdown-menu">
+							<li><a href="aboutus.html">About us</a></li>
+							<li><a href="contactus.html">Contact us</a></li>
+							<li><a href="gallery.html">Gallery</a></li>
+							<li><a href="portfolio.html">Portfolio</a></li>
+							<li><a href="portfolio-item.html">Portfolio Item</a></li>
+							<li><a href="invoice.html">Invoice page</a></li>
+							<li><a href="timeline.html">Timeline Page</a></li>
+							<li><a href="docs.html">API Documentation</a></li>
+							<li><a href="support.html">Support</a></li>
+							<li><a href="coming-soon.html">Coming Soon</a></li>
+							<li><a href="status.html">Status</a></li>
+							<li><a href="signup.html">Sign Up & Sign In</a></li>
+							<li><a href="signup-rotate.html">Sign Up Miscellaneous</a></li>
+							<li><a href="404.html">404 Page</a></li>
+				        </ul>
+        			</li>
+        			<li class="dropdown">
+        				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          					Blog <b class="caret"></b>
+          				</a>
+          				<ul class="dropdown-menu">
+							<li><a href="blog.html">Blog</a></li>
+							<li><a href="blogpost.html">Blog Post</a></li>
+				        </ul>
+        			</li>
+      			</ul>
+    		</nav>
+  		</div>
+	</header>
+
+	<div id="hero">
+		<div class="container">
+			<h1 class="hero-text">The best interfaces for your web and mobile apps.</h1>
+			<div class="cta">
+		       <a href="{{ url_for('signup') }}" class="button">Sign up free</a>
+				<a href="#" data-toggle="modal" data-target="#demo" class="demo">Watch a demo</a>
+			</div>
+			<div class="screenshot animated fadeInUp">
+				<img src="../static/images/ss2.png" class="img-responsive" alt="screenshot" />
+			</div>
+		</div>
+	</div>
+<div id="cta">
+		<div class="container">
 			<div class="row">
-				<div class="nav-inner row-content buffer-left buffer-right even clear-after">
-					<div id="brand">
-						<h1 class="reset"><!--<img src="img/logo.png" alt="logo">--><a href="home-01.html">Project Elsa</a></h1>
-					</div><!-- brand -->
-					<a id="menu-toggle" href="#"><i class="fa fa-bars fa-lg"></i></a>
-					<nav>
-						<ul class="reset" role="navigation">
-							<li class="menu-item">
-								<a href="index.html">Home</a>
-								
-							</li>
-<!--
-							<li class="menu-item">
-								<a href="about-us.html">About us</a>
-								
-							</li>
-							<li class="menu-item">
-								<a href="services.html">Services</a>
-								
-							</li>
-							<li class="menu-item"><a href="resume.html">Resume</a></li>
-							<li class="menu-item"><a href="developers.html">Developers</a></li>
-
-							<li class="menu-item">
-								<a href="search.html">Search</a>
-														
-							</li>
--->
-							<li class="menu-item">
-                          <a href="{{ url_for('signup') }}">Sign Up</a></li>     
-						</ul>
-					</nav>
-				</div><!-- row-content -->	
-			</div><!-- row -->	
-		</header>
-
-		<main role="main">
-			<div id="intro-wrap">
-				<div id="intro" class="preload darken" data-autoplay="5000" data-navigation="true" data-pagination="true" data-transition="fadeUp">					
-					<div class="intro-item" style="background-image: url(https://unsplash.imgix.net/photo-1416512107527-34cebecbac33?q=75&w=1080&h=1080&fit=max&fm=jpg&s=bf51f6e2da67e1c777e7f71ac58da3c2);">
-						<div class="caption">
-							<h2>Project Elsa</h2>
-							<p>Taking LinkedIn by storm</p>
-							
-							<a class="button white transparent" href="#">Read More</a>
-						</div><!-- caption -->
-										
-					</div>									
-					<div class="intro-item" style="background-image: url(https://ununsplash.imgix.net/uploads/1413399939678471ea070/2c0343f7?dpr=2&fit=crop&fm=jpg&h=725&q=75&w=1050);">
-						<div class="caption">
-							<h2>Lab desk</h2>
-							<p>Tools are all we need for creating good stuff</p>
-							<a class="button white transparent" href="#">Read More</a>
-						</div><!-- caption -->
-						<div class="photocaption">
-							<h4>A shot by <a href="http://madebyvadim.com/">Vadim Sherbakov</a></h4>
-						</div><!-- photocaption -->						
-					</div>						
-					<div class="intro-item" style="background-image: url(https://unsplash.imgix.net/reserve/UJO0jYLtRte4qpyA37Xu_9X6A7388.jpg?dpr=2&fit=crop&fm=jpg&h=700&q=75&w=1050);">
-						<div class="caption">
-							<h2>Jules &amp; Jim</h2>
-							<p>A team with over 20 years of realty experience</p>
-							<a class="button white transparent" href="#">Read More</a>
-						</div><!-- caption -->
-						<div class="photocaption">
-							<h4>Shot by <a href="http://dribbble.com/JustinMezzell">Justin Mezzell</a></h4>
-						</div><!-- photocaption -->						
-					</div>		
-					<div class="intro-item" style="background-image: url(https://unsplash.imgix.net/uploads/14131528928453585b6dc/829d24cf?dpr=2&fit=crop&fm=jpg&h=700&q=75&w=1050);">
-						<div class="caption">
-							<h2>Project Elsa</h2>
-							<p>We love to work inside dark rooms</p>
-							<a class="button white transparent" href="#">Read More</a>
-						</div><!-- caption -->
-						<div class="photocaption">
-							<h4>Shot by <a href="http://dribbble.com/shots/883285-my-workspace">Eddie Lobanovskiy</a></h4>
-						</div><!-- photocaption -->						
-					</div>																		
-				</div><!-- intro -->
-			</div><!-- intro-wrap -->
-
-			<div id="main">
-
-				<section class="row section call-to-action">
-					<div class="row-content buffer even">
-						<p>Welcome to project Elsa</p>
-						<a class="button red" href="{{ url_for('signup') }}">Sign Up</a>
+				<div class="col-md-12">
+					<div class="form-wrapper">
+						<h4>Ready to start? Create your free account now</h4>
+                    <form class="form-inline"  name="contact-form" method="post" action="{{ url_for('register') }}">
+						  	<div class="form-group">
+							    <input type="text" class="form-control" placeholder="Your name">
+							</div>
+							<div class="form-group">
+							    <input type="email" class="form-control" placeholder="Email">
+							</div>
+				   			<div class="form-group">
+						    	<input type="password" class="form-control" placeholder="Password">
+						  	</div>
+						  	<button type="submit" class="button button-small">Sign Up</button>
+						</form>
 					</div>
-				</section>
+				</div>
+			</div>
+		</div>
+	</div>
 
-				<section class="row section">
-					<div class="row-content buffer even clear-after">
-						<div class="column four">
-							<div class="small-icon red"><i class="icon icon-paperfly"></i></div>
-							<div class="small-icon-text clear-after">
-								<h4>Landing page</h4>
-								<p class="text-xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-							</div>
-						</div>
-						<div class="column four">
-							<div class="small-icon red"><i class="icon icon-diamond"></i></div>
-							<div class="small-icon-text clear-after">
-								<h4>Portfolio</h4>
-								<p class="text-xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-							</div>
-						</div>
-						<div class="column four last">
-							<div class="small-icon red"><i class="icon icon-crown"></i></div>
-							<div class="small-icon-text clear-after">
-								<h4>Resume</h4>
-								<p class="text-xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-							</div>
-						</div>
-						<div class="column four">
-							<div class="small-icon red"><i class="icon icon-tablet"></i></div>
-							<div class="small-icon-text clear-after">
-								<h4>Responsive</h4>
-								<p class="text-xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-							</div>
-						</div>
-						<div class="column four">
-							<div class="small-icon red"><i class="icon icon-megaphone"></i></div>
-							<div class="small-icon-text clear-after">
-								<h4>Blog</h4>
-								<p class="text-xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-							</div>
-						</div>
-						<div class="column four last">
-							<div class="small-icon red"><i class="icon icon-multiview"></i></div>
-							<div class="small-icon-text clear-after">
-								<h4>Layer CSS</h4>
-								<p class="text-xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-							</div>
-						</div>
-					</div>
-				</section>	
-
-				<section class="row section">
-					<div class="row-content buffer even clear-after">					
-						<div class="section-title"><h3>Latest News</h3></div>
-						<div class="grid-items blog-section masonry-style preload">
-							<article class="item column six">
-								<a href="#">
-									<figure><img src="http://placehold.it/800x600/ddd/fff&text=Beetle%20image" alt=""><span class="blog-overlay"><i class="icon icon-doc"></i></span></figure>
-									<div class="blog-excerpt">
-										<div class="blog-excerpt-inner">
-											<h5 class="meta-post">Interior design</h5>
-											<h2>A confortable desk</h2>
-										</div><!-- blog-excerpt -->
-									</div><!-- blog-excerpt-inner -->	
-								</a>
-							</article>		
-							<article class="item column three">
-								<a href="#">
-									<figure><img src="http://placehold.it/800x600/ddd/fff&text=Beetle%20image" alt=""><span class="blog-overlay"><i class="icon icon-doc"></i></span></figure>
-									<div class="blog-excerpt">
-										<div class="blog-excerpt-inner">
-											<h5 class="meta-post">Relax, Hobbies</h5>
-											<h2>How I spend my time</h2>
-											<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-										</div><!-- blog-excerpt-inner -->		
-									</div><!-- blog-excerpt -->								
-								</a>
-							</article>											
-							<article class="item column three">
-								<a href="#">
-									<figure><img src="http://placehold.it/800x600/ddd/fff&text=Beetle%20image" alt=""><span class="blog-overlay"><i class="icon icon-doc"></i></span></figure>
-									<div class="blog-excerpt">
-										<div class="blog-excerpt-inner">
-											<h5 class="meta-post">Holidays</h5>
-											<h2>Snow &amp; silence</h2>
-											<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-										</div><!-- blog-excerpt -->	
-									</div><!-- blog-excerpt-inner -->
-								</a>
-							</article>
-							<article class="item column three">
-								<a href="#">
-									<figure><img src="http://placehold.it/800x600/ddd/fff&text=Beetle%20image" alt=""><span class="blog-overlay"><i class="icon icon-doc"></i></span></figure>
-									<div class="blog-excerpt">
-										<div class="blog-excerpt-inner">
-											<h5 class="meta-post">Music, Headphones</h5>
-											<h2>5 Hi-Fi headphones</h2>
-											<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-										</div><!-- blog-excerpt -->	
-									</div><!-- blog-excerpt-inner -->							
-								</a>
-							</article>	
-							<article class="item column three">
-								<a href="#">
-									<figure><img src="http://placehold.it/800x600/ddd/fff&text=Beetle%20image" alt=""><span class="blog-overlay"><i class="icon icon-doc"></i></span></figure>
-									<div class="blog-excerpt">
-										<div class="blog-excerpt-inner">
-											<h5 class="meta-post">Web Design</h5>
-											<h2>Build awesome layouts</h2>
-											<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-										</div><!-- blog-excerpt -->	
-									</div><!-- blog-excerpt-inner -->							
-								</a>
-							</article>	
-							<article class="item column six">
-								<a href="#">
-									<figure><img src="http://placehold.it/800x600/ddd/fff&text=Beetle%20image" alt=""><span class="blog-overlay"><i class="icon icon-doc"></i></span></figure>
-									<div class="blog-excerpt">
-										<div class="blog-excerpt-inner">
-											<h5 class="meta-post">Photography, Instagram</h5>
-											<h2>We are all made of stars</h2>
-										</div><!-- blog-excerpt -->	
-									</div><!-- blog-excerpt-inner -->							
-								</a>
-							</article>																		
-							<div class="shuffle-sizer three"></div>
-						</div><!-- grid-items -->
-						<div class="more-btn"><a class="button transparent aqua" href="#">Read all News</a></div>						
-					</div>	
-				</section>	
-
-				<section class="row section text-light" style="background-color:#cec8bc">
-					<div class="row-content buffer even clear-after">
-						<div class="column six push-six last-special">
-						
-						</div>						
-						<div class="side-mockup left-mockup animation">
-							<div class="slider iphone-slider white" data-autoplay="3000">
-								<figure>
-									<div><img src="http://placehold.it/640x1136/ddd/fff&text=Beetle%20image" alt=""></div>
-									<div><img src="http://placehold.it/640x1136/ddd/fff&text=Beetle%20image" alt=""></div>
-									<div><img src="http://placehold.it/640x1136/ddd/fff&text=Beetle%20image" alt=""></div>
-									<div><img src="http://placehold.it/640x1136/ddd/fff&text=Beetle%20image" alt=""></div>
-									<div><img src="http://placehold.it/640x1136/ddd/fff&text=Beetle%20image" alt=""></div>
-									<div><img src="http://placehold.it/640x1136/ddd/fff&text=Beetle%20image" alt=""></div>
-								</figure>
-							</div>
-						</div>						
-					</div>	
-				</section>										
-
-				<section class="row section">
-					<div class="row-content buffer even clear-after">
-						<div class="section-title"><h3>Skills</h3></div>
-						<p class="centertxt">I’m an experienced and passionate user interface designer with interaction design background.<br>My goal is to make the world wide web a better place by designing beautiful user experiences, one site at a time.</p>
-						<div class="chart" data-percent="73" data-bar-color="#fd685b" data-animate="2000">
-							<div class="chart-content">
-								<div class="percent"></div>
-								<div class="chart-title">User Interface</div>
-							</div><!-- chart-content -->
-						</div><!-- chart -->
-						<div class="chart" data-percent="85" data-bar-color="#ffce54" data-animate="2500">
-							<div class="chart-content">
-								<div class="percent"></div>
-								<div class="chart-title">Front-end</div>
-							</div><!-- chart-content -->
-						</div><!-- chart -->
-						<div class="chart" data-percent="70" data-bar-color="#a0d468" data-animate="3000">
-							<div class="chart-content">
-								<div class="percent"></div>
-								<div class="chart-title">User Experience</div>
-							</div><!-- chart-content -->
-						</div><!-- chart -->
-						<div class="chart" data-percent="95" data-bar-color="#ac92ec" data-animate="3500">
-							<div class="chart-content">
-								<div class="percent"></div>
-								<div class="chart-title">Icon Design</div>
-							</div><!-- chart-content -->
-						</div><!-- chart -->
-					</div>	
-				</section>	
-
-				<section class="row section text-light" style="background-color:#4FC1E9;">
-					<div class="row-content buffer even clear-after">
-						<div class="testimonial-slider centertxt" data-autoplay="5000" data-pagination="true" data-transition="fade" data-autoheight="false">
-							<div class="quote">
-								<p>"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."</p>
-								<div class="author">John Lennon</div>
-							</div><!-- quote -->
-							<div class="quote">
-								<p>"Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum'.."</p>
-								<div class="author">Fabrizio De Andr&egrave;</div>
-							</div><!-- quote -->		
-							<div class="quote">
-								<p>"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration."</p>
-								<div class="author">B.B. King</div>
-							</div><!-- quote -->							
-						</div><!-- testimonial-slider -->				
-					</div>
-				</section>						
-
-				<section class="row section">
-					<div class="row-content buffer even clear-after">
-						<div class="column three">
-							<div class="count-item">
-								<div class="small-icon red"><i class="icon icon-leaf"></i></div>
-								<div class="count-number" data-from="0" data-to="1284" data-speed="1000" data-refresh-interval="25"></div>
-								<div class="count-subject">Active projects</div>
-							</div><!-- count-item -->
-						</div>
-						<div class="column three">
-							<div class="count-item">
-								<div class="small-icon red"><i class="icon icon-heart"></i></div>
-								<div class="count-number" data-from="0" data-to="28903" data-speed="1500" data-refresh-interval="25"></div>
-								<div class="count-subject">Users who love them</div>
-							</div><!-- count-item -->
-						</div>
-						<div class="column three">
-							<div class="count-item">
-								<div class="small-icon red"><i class="icon icon-tshirt"></i></div>
-								<div class="count-number" data-from="0" data-to="326" data-speed="2000" data-refresh-interval="25"></div>
-								<div class="count-subject">T-Shirts &amp; Gadgets</div>
-							</div><!-- count-item -->
-						</div>
-						<div class="column three last">
-							<div class="count-item">
-								<div class="small-icon red"><i class="icon icon-graph"></i></div>
-								<div class="count-number" data-from="0" data-to="58802" data-speed="2500" data-refresh-interval="25"></div>
-								<div class="count-subject">Everyday visitors</div>
-							</div><!-- count-item -->
-						</div>
-					</div>	
-				</section>
-
-				<section class="row section text-light" style="background-color:#FF8CB9">
-					<div class="row-content buffer even clear-after">
-						<div class="section-title"><h3>Frankie's Dribbble Shots</h3></div>
-						<div class="dribbble-items portfolio-section preload" data-username="frankiefreesbie" data-elements="4">
-						</div><!-- dribbble-items -->
-						<div class="more-btn"><a class="button transparent white" href="http://dribbble.com/frankiefreesbie">View all Shots</a></div>						
-					</div>	
-				</section>	
-
-				<section class="row section call-to-action">
-					<div class="row-content buffer even animation">
-						<p>Have you fallen in love with Beetle?</p>
-						<a class="button red" href="#">Buy it now!</a>
-					</div>
-				</section>								
-
-				<section class="row section">
-					<div class="map" data-maplat="51.511214" data-maplon="-0.119824" data-mapzoom="15" data-color="" data-height="22.222" data-img="img/marker.png" data-info="I am based in London, UK"></div>
-				</section>									
-
-			</div><!-- id-main -->
-		</main><!-- main -->
-
-		<footer role="contentinfo">
+	<div id="tabs">
+		<div class="container">
+			<div class="row header">
+				<div class="col-md-12">
+					<h3>Accomplish more with React</h3>
+					<p>Choose your favorite formats for your own sites</p>
+				</div>
+			</div>
 			<div class="row">
-				<div class="row-content buffer clear-after">
-					<section id="top-footer">
-						<div class="widget column three"><!-- la class="widget" è forse generata utomaticamente da wp -->
-							<h4>Menu</h4>
-							<ul class="plain">
-								<li><a href="home-01.html">Home</a></li>
-								<li><a href="works-3-columns.html">Portfolio</a></li>
-								<li><a href="blog-4-columns-masonry.html">Blog</a></li>
-								<li><a href="resume.html">Resume</a></li>
-								<li><a href="file:///Users/pasqualevitiello/My%20Folder/Job/Envato/PR%20Themeforest/Flattie/Markup/Beetle/contact.html">Contact</a></li>
-							</ul>
+				<div class="col-md-12 tabs-wrapper">
+					<ul class="nav nav-tabs">
+					  	<li class="active"><a href="#home" data-toggle="tab">Upstart your development</a></li>
+					  	<li><a href="#profile" data-toggle="tab">Get ready in half the time</a></li>
+					  	<li><a href="#messages" data-toggle="tab">Collaborate with everyone</a></li>
+					  	<li><a href="#settings" data-toggle="tab">Get more done faster</a></li>
+					</ul>
+
+					<div class="tab-content">
+					  	<div class="tab-pane fade in active" id="home">
+					  		<div class="col-md-6 info">
+					  			<h4>You don't need to have any advanced technical</h4>
+					  			<p>
+					  				Whether you want to fill this paragraph with some text like I'm doing right now, this place is perfect to describe some features or anything you want - React has a complete solution for you.
+					  			</p>
+					  			<p>
+					  				You have complete control over the look & feel of your website, we offer the best quality so you take your site up and running in no time.
+					  			</p>
+					  		</div>
+					  		<div class="col-md-6 image">
+					  			<img src="../static/images/tabs/pic1.png" class="img-responsive" alt="pic1" />
+					  		</div>
+					  	</div>
+					  	<div class="tab-pane fade" id="profile">
+					  		<div class="col-md-6 image">
+					  			<img src="../static/images/portfolioitem1.png" class="img-responsive" alt="pic2" />
+					  		</div>
+					  		<div class="col-md-6 info">
+					  			<h4>You don't need to have any advanced technical</h4>
+					  			<p>
+					  				Whether you want to fill this paragraph with some text like I'm doing right now, this place is perfect to describe some features or anything you want - React has a complete solution for you.
+					  			</p>
+					  		</div>					  		
+					  	</div>
+					  	<div class="tab-pane fade" id="messages">
+					  		<div class="col-md-6 info">
+					  			<h4>You don't need to have any advanced technical</h4>
+					  			<p>
+					  				Whether you want to fill this paragraph with some text like I'm doing right now, this place is perfect to describe some features or anything you want - React has a complete solution for you.
+					  			</p>
+					  			<p>
+					  				You have complete control over the look & feel of your website, we offer the best quality so you take your site up and running in no time.
+					  			</p>
+					  		</div>
+					  		<div class="col-md-6 image">
+					  			<img src="../static/images/tabs/pic2.png" class="img-responsive" style="position: relative;top: 15px;" alt="pic3" />
+					  		</div>
+					  	</div>
+					  	<div class="tab-pane fade" id="settings">
+					  		<div class="col-md-6 image">
+					  			<img src="../static/images/tabs/pic1.png" class="img-responsive" alt="pic4" />
+					  		</div>
+					  		<div class="col-md-6 info">
+					  			<h4>You don't need to have any advanced technical</h4>
+					  			<p>
+					  				Whether you want to fill this paragraph with some text like I'm doing right now, this place is perfect to describe some features or anything you want - React has a complete solution for you.
+					  			</p>
+					  		</div>
+					  	</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="pricing">
+		<div class="container">
+			<div class="row header">
+				<h3>Free trial. No contract. Cancel when you want.</h3>
+				<p>All plans include a 7-day free trial</p>
+			</div>
+			<div class="row charts">
+				<div class="col-md-4">
+					<div class="chart first">
+						<div class="quantity">
+							<span class="dollar">$</span>
+							<span class="price">29</span>
+							<span class="period">/month</span>
 						</div>
-						<div class="widget column three">
-							<h4>Archives</h4>
-							<ul class="plain">
-								<li><a href="#">March 2014</a></li>
-								<li><a href="#">April 2014</a></li>
-								<li><a href="#">May 2014</a></li>
-								<li><a href="#">June 2014</a></li>
-								<li><a href="#">July 2014</a></li>
-							</ul>
-						</div>								
-						<div class="widget column three">
-							<h4>Widget</h4>
-							<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-						</div>				
-						<div class="widget meta-social column three">
-							<h4>Follow Us</h4>
-							<ul class="inline">
-								<li><a href="#" class="twitter-share border-box"><i class="fa fa-twitter fa-lg"></i></a></li>
-								<li><a href="#" class="facebook-share border-box"><i class="fa fa-facebook fa-lg"></i></a></li>
-								<li><a href="#" class="pinterest-share border-box"><i class="fa fa-pinterest fa-lg"></i></a></li>
-							</ul>
-						</div>														
-					</section><!-- top-footer -->
-					<section id="bottom-footer">
-						<p class="keep-left">&copy; 2014 <a href="http://mokaine.com/" alt="Mokaine Lab">Mokaine</a>. All Rights Reserved.</p>
-						<p class="keep-right">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
-					</section><!-- bottom-footer -->			
-				</div><!-- row-content -->	
-			</div><!-- row -->	
-		</footer>
+						<div class="plan-name">Freelance</div>
+						<div class="specs">
+							<div class="spec">
+								<span class="variable">5</span>
+								team members
+							</div>
+							<div class="spec">
+								<span class="variable">Digital</span>
+								recurring billing
+							</div>
+							<div class="spec">
+								<span class="variable">Virtual</span>
+								online terminal
+							</div>
+							<div class="spec">
+								<span class="variable">10</span>
+								total products
+							</div>
+							<div class="spec">
+								<span class="variable">1.0%</span>
+								Transaction fee
+							</div>
+						</div>
+						<a class="btn-signup button-clear" href="signup.html">
+							<span>Start free trial</span>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="chart featured">
+						<div class="popular">Most popular</div>
+						<div class="quantity">
+							<span class="dollar">$</span>
+							<span class="price">79</span>
+							<span class="period">/month</span>
+						</div>
+						<div class="plan-name">Profesional</div>
+						<div class="specs">
+							<div class="spec">
+								<span class="variable">15</span>
+								team members
+							</div>
+							<div class="spec">
+								<span class="variable">Digital</span>
+								recurring billing
+							</div>
+							<div class="spec">
+								<span class="variable">Virtual</span>
+								online terminal
+							</div>
+							<div class="spec">
+								<span class="variable">15</span>
+								total products
+							</div>
+							<div class="spec">
+								<span class="variable">0.5%</span>
+								Transaction fee
+							</div>
+						</div>
+						<a class="btn-signup button-clear" href="signup.html">
+							<span>Start free trial</span>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="chart last">
+						<div class="quantity">
+							<span class="dollar">$</span>
+							<span class="price">119</span>
+							<span class="period">/month</span>
+						</div>
+						<div class="plan-name">Premium</div>
+						<div class="specs">
+							<div class="spec">
+								<span class="variable">Unlimited</span>
+								team members
+							</div>
+							<div class="spec">
+								<span class="variable">Digital</span>
+								recurring billing
+							</div>
+							<div class="spec">
+								<span class="variable">Virtual</span>
+								online terminal
+							</div>
+							<div class="spec">
+								<span class="variable">25</span>
+								total products
+							</div>
+							<div class="spec">
+								<span class="variable">No</span>
+								Transaction fee
+							</div>
+						</div>
+						<a class="btn-signup button-clear" href="signup.html">
+							<span>Start free trial</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-		<script src="https://code.jquery.com/jquery.js"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>		
-		<script src="../static/js/plugins.js"></script>
-		<script src="../static/js/beetle.js"></script>
+	<div id="second-option">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 feature">
+					<img src="../static/images/circle-icons/one-color/creditcard.png" alt="creditcard" />
+					<strong>Act locally, work globally</strong>
+					<p>You can work with international customers right out of the box while you can keep staying in your country.</p>
+				</div>
+				<div class="col-md-4 feature">
+					<img src="../static/images/circle-icons/one-color/dev.png" alt="dev" />
+					<strong>Act globally, work as usual</strong>
+					<p>With some customization you can make this product apply to your branding guidelines and amaze your customers at the same time.</p>
+				</div>
+				<div class="col-md-4 feature">
+					<img src="../static/images/circle-icons/one-color/globe.png" alt="globe" />
+					<strong>Develop once, run everywhere</strong>
+					<p>We don't impose any design restrictions, you are free to customize it as you see fit and it's easy to use.</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 feature">
+					<img src="../static/images/circle-icons/one-color/support.png" alt="support" />
+					<strong>Act globally, work as usual</strong>
+					<p>We're always happy to offer support if you happen to have any doubts about anything, if you need
+						some new stuff contact us.</p>
+				</div>
+				<div class="col-md-4 feature">
+					<img src="../static/images/circle-icons/one-color/mail.png" alt="mail" />
+					<strong>Develop once, run everywhere</strong>
+					<p>We'll be adding some new stuff to make it even more awesome, if you have any idea please let us know.</p>
+				</div>
+				<div class="col-md-4 feature">
+					<img src="../static/images/circle-icons/one-color/locked.png" alt="locked" />
+					<strong>Act locally, work globally</strong>
+					<p>This thing will work on any device, it has a very easy to understand documentation and is made with SASS.</p>
+				</div>
+			</div>
+		</div>
+	</div>
 
-	</body>
+	<div id="mobile">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6 hidden-xs">
+					<img src="../static/images/ss3.png" class="device img-responsive" alt="mobile" />
+				</div>
+				<div class="col-sm-6 col-xs-12">
+					<div class="info">
+						<h3>Available in the Appstore</h3>
+						<p>
+							With some customization you can make this product apply to your branding guidelines and amaze your customers at the same time.
+						</p>
+						<a class="button button-small" href="#">Get it free</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
+	<div id="grid-first">
+		<div class="container">
+			<div class="row header">
+				<h3>Need an easy way to customize your site?</h3>
+				<p>
+					React is perfect for novice developers and experts alike.
+				</p>
+			</div>
+			<div class="row sections">
+				<div class="col-md-4">
+					<div class="section">
+						<div class="pic">
+							<img src="../static/images/services2.png" class="img-responsive" alt="services1" />
+						</div>
+						<div class="info">
+							<strong>Awesome mobile app</strong>
+							<p>
+								You can work with international customers right out of the box while staying in your country.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="section">
+						<div class="pic">
+							<img src="../static/images/services4.png" class="img-responsive" alt="services2" />
+						</div>
+						<div class="info">
+							<strong>Awesome mobile app</strong>
+							<p>
+								You can work with international customers right out of the box while staying in your country.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="section">
+						<div class="pic">
+							<img src="../static/images/services3.png" class="img-responsive" alt="services3" />
+						</div>
+						<div class="info">
+							<strong>Awesome mobile app</strong>
+							<p>
+								You can work with international customers right out of the box while staying in your country.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	<div id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 copyright">
+					React LLC 2014
+				</div>
+				<div class="col-md-6 menu">
+					<ul>
+	      				<li>
+	          				<a href="features.html">Features</a>
+	        			</li>
+	        			<li>
+	        				<a href="services.html">Services</a>
+	        			</li>
+	        			<li>
+	          				<a href="pricing.html">Pricing</a>
+	        			</li>
+	        			<li>
+	          				<a href="support.html">Support</a>
+	        			</li>
+	        			<li>
+	          				<a href="blog.html">Blog</a>
+	        			</li>
+	      			</ul>
+				</div>
+				<div class="col-md-3 social">
+					<a href="#">
+						<img src="../static/images/social/social-tw.png" alt="twitter" />
+					</a>
+					<a href="#">
+						<img src="../static/images/social/social-dbl.png" alt="dribbble" />
+					</a>					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="demo">
+	  	<div class="modal-dialog">
+	    	<div class="modal-content">
+	      		<div class="modal-body">
+	      			<iframe src='http://player.vimeo.com/video/22439234' width='650' height='370' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+	      		</div>
+	    	</div>
+	 	 </div>
+	</div>
+
+	<script type="text/javascript">
+		$(function () {
+			var $demo = $("#demo");
+			$('#demo').on('hidden.bs.modal', function () {
+			  $demo.find("iframe").remove();
+			})
+			$('#demo').on('show.bs.modal', function () {
+				if (!$demo.find("iframe").length) {
+					$demo.find(".modal-body").append("<iframe src='http://player.vimeo.com/video/22439234' width='650' height='370' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>")
+				}			  
+			})
+		});
+	</script>
+</body>
 </html>
